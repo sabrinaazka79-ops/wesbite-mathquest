@@ -46,7 +46,11 @@
         if (pw !== $('pw2').value) return pesan('Password dan ulangi password harus sama.')
         const { data, error } = await db.auth.signUp({ email, password: pw, options: { data: { username: $('username').value.trim() }, emailRedirectTo: location.origin + location.pathname } })
         if (error) return pesan(/rate limit/i.test(error.message) ? 'Terlalu banyak email yang dikirim. Tunggu beberapa menit, atau minta pemilik web mematikan "Confirm email" di Supabase.' : error.message)
-        if (!data.session) pesan('Akun dibuat. Cek email untuk konfirmasi, lalu masuk.', 'ok')
+               if (!data.session) {
+          pesan('Akun dibuat. Cek email untuk konfirmasi (juga folder Spam), lalu masuk.', 'ok')
+          $('pesan').firstChild.insertAdjacentHTML('beforeend',
+            `<p style="margin:8px 0 0"><a class="btn" href="${atrM(linkEmail(email))}" target="_blank" rel="noopener">📧 Buka email</a></p>`)
+        }
       } else {
         const { error } = await db.auth.signInWithPassword({ email, password: pw })
         if (error) pesan(pesanMasuk(error))
