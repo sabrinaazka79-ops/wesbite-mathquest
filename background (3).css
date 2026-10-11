@@ -1,0 +1,10 @@
+/* MathQuest - hanya mengganti background halaman.
+   Kotak Masuk/Daftar TIDAK disentuh sama sekali. */
+html {
+  min-height: 100%;
+  background: #8fd0fb url("background.svg") center center / cover no-repeat !important;
+}
+body {
+  min-height: 100vh;
+  background: transparent !important;
+}
