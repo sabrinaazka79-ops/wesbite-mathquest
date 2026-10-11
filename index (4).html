@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MathQuest - Belajar matematika jadi lebih seru</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#f4f1ff; --card:#fff; --ink:#1d1740; --muted:#5f5a82; --p:#6c4cf1; --p2:#ff7a59; --ok:#16a36a; --err:#d93a4a; --line:#e0daf7; }
+    :root[data-theme="dark"] { --bg:#15112e; --card:#211b45; --ink:#f1eeff; --muted:#aaa3d6; --p:#9b84ff; --p2:#ff946f; --line:#38306b; }
+    * { box-sizing:border-box }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:'Nunito',system-ui,sans-serif; line-height:1.5 }
+    h1,h2,h3,.logo { font-family:'Baloo 2',sans-serif; margin:0 }
+    .wrap { max-width:960px; margin:0 auto; padding:16px }
+    .bar { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:12px 0 }
+    .logo { font-size:1.6rem; font-weight:800; color:var(--p) }
+    nav { display:flex; gap:6px; flex-wrap:wrap }
+    nav button, .btn { font:inherit; font-weight:800; border:0; border-radius:12px; padding:10px 16px; cursor:pointer; background:var(--card); color:var(--ink); border:2px solid var(--line) }
+    nav button.on { background:var(--p); color:#fff; border-color:var(--p) }
+    .btn { background:var(--p); color:#fff; border-color:var(--p) }
+    .btn.alt { background:transparent; color:var(--ink); border-color:var(--line) }
+    button:focus-visible, input:focus-visible { outline:3px solid var(--p2); outline-offset:2px }
+    .card { background:var(--card); border:2px solid var(--line); border-radius:18px; padding:20px }
+    .auth { max-width:420px; margin:6vh auto 0 }
+    .auth h1 { font-size:2.4rem; color:var(--p) }
+    label { display:block; font-weight:800; margin:12px 0 4px }
+    input { width:100%; font:inherit; padding:11px 12px; border-radius:10px; border:2px solid var(--line); background:var(--bg); color:var(--ink) }
+    .tabs { display:flex; gap:8px; margin:16px 0 }
+    .tabs button { flex:1 }
+    .msg { margin-top:12px; padding:10px 12px; border-radius:10px; font-weight:600 }
+    .msg.err { background:#d93a4a22; color:var(--err) } .msg.ok { background:#16a36a22; color:var(--ok) }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:14px; margin-top:14px }
+    .materi .ikon { font-size:2rem } .materi h3 { margin:6px 0 2px }
+    .materi p { margin:0 0 12px; color:var(--muted) }
+    .prog { height:10px; background:var(--line); border-radius:9px; overflow:hidden }
+    .prog span { display:block; height:100%; width:0%; background:var(--p2) }
+    .kecil { color:var(--muted); font-size:.9rem }
+    .row { display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid var(--line) }
+    .box { margin-top:14px } .box ul { padding-left:20px }
+    .opsi { display:block; width:100%; text-align:left; font:inherit; font-weight:600; margin:8px 0; padding:12px; border-radius:12px; border:2px solid var(--line); background:var(--bg); color:var(--ink); cursor:pointer }
+    .opsi:hover:not(:disabled) { border-color:var(--p) } .opsi.benar { border-color:var(--ok); background:#16a36a22 } .opsi.salah { border-color:var(--err); background:#d93a4a22 }
+    input[type=range] { padding:0 }
+    textarea, select { width:100%; font:inherit; padding:11px 12px; border-radius:10px; border:2px solid var(--line); background:var(--bg); color:var(--ink) }
+    .pil { display:flex; gap:8px; align-items:center; font-weight:600; margin:6px 0 } .kunci { opacity:.45; filter:grayscale(1) }
+    </style>
+  <link rel="stylesheet" href="background.css">
+</head>
+<body>
+  <div class="wrap" id="app">Memuat...</div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+  <script src="materi.js"></script>
+  <script src="kuis.js"></script>
+  <script src="beranda.js"></script>
+  <script src="materi1.js"></script>
+  <script src="materi2.js"></script>
+  <script src="materi3.js"></script>
+  <script src="materi4.js"></script>
+  <script src="materi5.js"></script>
+  <script src="materi6.js"></script>
+  <script src="ingat.js"></script>
+  <script src="masuk.js"></script>
+  <script src="pencapaian.js"></script>
+  <script src="edukasi.js"></script>
+  <script src="mathquest-bg.js" defer></script>
+</body>
+</html>
