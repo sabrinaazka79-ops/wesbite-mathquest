@@ -113,3 +113,20 @@
     if (/bayar=selesai/.test(location.search)) { var t = 0, iv = setInterval(function () { cek(); if (premium || ++t > 10) clearInterval(iv); }, 3000); }
   }
 })();
+
+/* Hapus bagian "Buat otomatis dengan AI" di formulir Buat latihan soal */
+(function () {
+  var teks = 'Buat otomatis dengan AI', pending = false;
+  function bersih() {
+    pending = false;
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), n, hits = [];
+    while ((n = w.nextNode())) if (n.nodeValue.indexOf(teks) >= 0) hits.push(n.parentElement);
+    hits.forEach(function (el) {
+      // naik sampai tepat di bawah wadah yang juga memuat "Judul latihan" = kotak AI-nya
+      while (el.parentElement && el.parentElement !== document.body && el.parentElement.textContent.indexOf('Judul latihan') < 0) el = el.parentElement;
+      if (el.parentElement && el.parentElement !== document.body && el.textContent.indexOf('Judul latihan') < 0) el.remove();
+    });
+  }
+  new MutationObserver(function () { if (!pending) { pending = true; requestAnimationFrame(bersih); } }).observe(document.body, { childList: true, subtree: true });
+  bersih();
+})();
