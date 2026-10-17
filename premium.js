@@ -15,7 +15,7 @@
   bersih();
 })();
 
-/* MathQuest Premium: Materi 1-2 gratis, Materi 3-6 berbayar Rp35.000 sekali bayar (selamanya). Hanya menambah lapisan di atas kodemu. */
+/* MathQuest Premium: Materi 1-2 gratis, Materi 3-6 berbayar Rp25.000 sekali bayar (selamanya). Hanya menambah lapisan di atas kodemu. */
 /* MathQuest Premium. Gratis: Materi 1-2, Kuis, Materi, Latihan Soal. Premium: Materi 3-6 + Game. Mode SIMULASI = tanpa bayar sungguhan. */
 (function () {
   var CFG = {
@@ -23,7 +23,7 @@
     SUPABASE_URL: 'https://qoeflqydmemenxwjulaw.supabase.co',
     ANON_KEY: 'ISI_ANON_KEY_KAMU',  // hanya dipakai kalau SIMULASI = false
     GRATIS: [1, 2],
-    HARGA: 35000,
+    HARGA: 25000,
     DEMO: !!window.MQ_DEMO
   };
   var SIM = CFG.SIMULASI || CFG.DEMO;
