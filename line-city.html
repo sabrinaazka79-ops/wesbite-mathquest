@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="id"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LINE CITY - Build Your Math World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1b2a5e;--mu:#5d6c9c;--bg:#e8f1ff;--blue:#3b82f6;--blue2:#1d4ed8;--sky:#5cc8ff;--pur:#8b5cf6;--pur2:#6d3fe0;--mint:#34d399;--mint2:#14a373;--sun:#ffd23f;--sun2:#f2a900;--pink:#ff7eb6;--tom:#ff5d6c;--ok:#22c58b;--bad:#ff4d6d;--edge:#1b2a5e26;--head:'Fredoka',system-ui,sans-serif;--body:'Nunito',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:700;min-height:100%;-webkit-text-size-adjust:100%}
+body{overflow-x:hidden}
+.sky{position:fixed;inset:0;z-index:0;background:radial-gradient(800px 500px at 90% -10%,#fff3b0,transparent 60%),radial-gradient(700px 500px at -5% 100%,#d6c8ff,transparent 60%),linear-gradient(180deg,#bfe0ff,#e8f1ff 55%,#e3fff3)}
+.sky svg{position:absolute;inset:0;width:100%;height:100%}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:12px 14px 40px}
+.top{display:flex;align-items:center;gap:12px;padding:4px 0 12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;font:700 20px var(--head);cursor:pointer;background:none;border:0;color:var(--ink)}
+.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(180deg,#a78bfa,var(--pur));display:grid;place-items:center;box-shadow:0 4px 0 var(--pur2),inset 0 2px 0 #ffffff88}.logo svg{width:26px;height:26px}
+.nav{display:flex;gap:6px;flex:1;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:none;min-width:0}.nav::-webkit-scrollbar{display:none}
+.nav button{flex:none;font:800 13px var(--body);color:var(--ink);background:#fff;border:0;border-radius:99px;padding:8px 14px;cursor:pointer;box-shadow:0 3px 0 #1b2a5e1f,inset 0 0 0 2px var(--edge)}
+.nav button.on{background:linear-gradient(180deg,#a78bfa,var(--pur));color:#fff;box-shadow:0 3px 0 var(--pur2),inset 0 2px 0 #ffffff66}
+h1,h2,h3{font-family:var(--head);line-height:1.1;font-weight:600}
+.btn{font:800 16px var(--body);border:0;border-radius:16px;padding:12px 20px;cursor:pointer;color:#fff;text-shadow:0 2px 0 #0003;background:linear-gradient(180deg,#ffe066,var(--sun) 40%,var(--sun2));color:#5a3d00;text-shadow:none;box-shadow:0 6px 0 #b27a00,0 12px 18px #f2a90044,inset 0 2px 0 #ffffffaa;transition:transform .12s,filter .12s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.05)}.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #b27a00,inset 0 2px 0 #ffffffaa}
+.btn.big{padding:15px 32px;font-size:19px}.btn.sm{padding:8px 13px;font-size:13px}
+.btn.bl{color:#fff;text-shadow:0 2px 0 #0003;background:linear-gradient(180deg,#7cb4ff,var(--blue) 55%,var(--blue2));box-shadow:0 6px 0 #1739a0,0 12px 18px #3b82f644,inset 0 2px 0 #ffffff88}
+.btn.mt{color:#fff;text-shadow:0 2px 0 #0003;background:linear-gradient(180deg,#8af0c8,var(--mint) 55%,var(--mint2));box-shadow:0 6px 0 #0c7a58,inset 0 2px 0 #ffffff88}
+.btn.ghost{background:#fff;color:var(--ink);text-shadow:none;box-shadow:0 5px 0 #1b2a5e22,inset 0 0 0 2.5px var(--edge)}.btn.sm.ghost{box-shadow:0 4px 0 #1b2a5e22,inset 0 0 0 2.5px var(--edge)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+:focus-visible{outline:3px solid var(--pur);outline-offset:2px}
+.glass{background:#fff;border:3px solid #fff;border-radius:22px;box-shadow:0 7px 0 #1b2a5e1c,0 16px 30px #1b2a5e14,inset 0 0 0 2px #1b2a5e10}
+.pad{padding:16px}
+.tag{display:inline-block;font:800 12px var(--body);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(180deg,#8af0c8,var(--mint2));border-radius:99px;padding:6px 14px;box-shadow:0 3px 0 #0c7a58,inset 0 2px 0 #ffffff66;text-shadow:0 1px 0 #0003}
+.land{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:center;min-height:470px}
+.land h1{font-size:clamp(50px,9vw,88px);margin:12px 0 4px;color:#fff;text-shadow:0 3px 0 var(--blue2),0 6px 0 var(--blue2),0 9px 0 #14308a,0 14px 22px #1b2a5e44}
+.land h1 span{color:var(--sun);text-shadow:0 3px 0 var(--sun2),0 6px 0 #c58b00,0 9px 0 #9a6c00,0 14px 22px #1b2a5e44}
+.sub{font:600 21px var(--head);color:var(--pur2)}.land p{margin:12px 0 20px;color:#2c3f7a;max-width:480px;line-height:1.55}
+.how{margin-top:16px;color:var(--mu);font-size:14px;max-width:480px}.how summary{cursor:pointer;font-weight:800}.how ul{padding-left:20px;margin-top:8px;line-height:1.55}
+.hero{position:relative;aspect-ratio:1/.92;border-radius:30px;overflow:hidden;box-shadow:0 10px 0 #1b2a5e22,0 24px 40px #1b2a5e26;border:5px solid #fff;background:#bfe6ff}.hero>svg{position:absolute;inset:0;width:100%;height:100%}.hero .ch{position:absolute;left:41%;bottom:1%;width:16%;filter:drop-shadow(0 6px 0 #1b2a5e33);animation:fl 5s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-8px)}}
+.av{width:64px;height:64px;flex:none;border-radius:50%;box-shadow:0 0 0 4px #fff,0 5px 0 4px #1b2a5e22;overflow:hidden;background:#fff}.av svg{display:block;width:100%;height:100%}
+.prof{max-width:560px;margin:10px auto;padding:22px}.prof h2{font-size:30px;margin-bottom:6px}
+.field{display:block;margin:14px 0 6px;font-size:14px;color:var(--mu)}.inp{width:100%;font:800 18px var(--body);padding:12px 14px;border-radius:15px;border:0;background:#f1f6ff;color:var(--ink);box-shadow:inset 0 3px 5px #1b2a5e22,inset 0 0 0 2.5px var(--edge)}
+.avs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:8px 0 18px}.avs button{border:0;background:none;padding:3px;border-radius:50%;cursor:pointer}.avs button .av{width:100%;height:auto;aspect-ratio:1;box-shadow:0 0 0 3px #fff,0 3px 0 3px #1b2a5e22}.avs button.on .av{box-shadow:0 0 0 3px #fff,0 0 0 7px var(--pur),0 3px 0 7px var(--pur2)}
+.dh{display:flex;align-items:center;gap:14px;padding:16px;flex-wrap:wrap}.dh h2{font-size:26px}.dh .sm{margin-top:3px}
+.sm{font-size:13px;color:var(--mu);font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+.stat{padding:14px;text-align:center}.stat b{display:block;font:700 30px var(--head);margin-top:2px}.stat .ic{width:40px;height:40px;margin:0 auto}.stat .ic svg{width:100%;height:100%;filter:drop-shadow(0 3px 0 #1b2a5e22)}
+.bar{height:16px;border-radius:9px;background:#e9efff;box-shadow:inset 0 2px 3px #1b2a5e33;overflow:hidden;border:2px solid #fff}.bar i{display:block;height:100%;background:linear-gradient(180deg,#9cf0d2,var(--mint) 60%,var(--mint2));border-radius:9px;transition:width .5s}.bar.pu i{background:linear-gradient(180deg,#c4b0ff,var(--pur) 60%,var(--pur2))}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.tile2{padding:14px;text-align:left;cursor:pointer;border:0;font-family:var(--body);color:var(--ink);border-radius:20px;background:#fff;box-shadow:0 6px 0 #1b2a5e22;transition:transform .15s}.tile2:hover{transform:translateY(-4px)}.tile2 b{display:block;font:600 18px var(--head);margin:6px 0 2px}.tile2 span{font-size:12.5px;color:var(--mu)}.tile2 .ic{width:46px;height:46px}.tile2 .ic svg{width:100%;height:100%}
+.pg h2{font-size:30px;margin:4px 0 4px}.pg>.sm{margin-bottom:12px}
+.mapbox{border-radius:26px;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 0 #1b2a5e22,0 18px 30px #1b2a5e14;background:#9be8c4}.mapbox svg{display:block;width:100%;height:auto}
+.zone{cursor:pointer}.zone:hover .zart{transform:translateY(-4px)}.zart{transition:transform .2s;transform-box:fill-box}.zone.lock{cursor:not-allowed}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{background:#fff;border-radius:99px;padding:6px 13px;font:800 13px var(--body);box-shadow:0 3px 0 #1b2a5e1c,inset 0 0 0 2px var(--edge)}
+.alist{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}.ac{padding:10px;border-radius:18px;background:#fff;box-shadow:0 5px 0 #1b2a5e20;text-align:left;border:0;cursor:pointer;font-family:var(--body);color:var(--ink)}.ac .n{font:700 12px var(--head);color:var(--pur2);letter-spacing:.08em}.ac h3{font-size:16px;margin:2px 0}.ac .s{font-size:12.5px;color:var(--mu)}.ac.lock{filter:grayscale(.7);opacity:.7;cursor:not-allowed}.ac.cur{box-shadow:0 0 0 3px var(--sun),0 5px 0 3px #f2a90077}
+.brief{padding:16px}.brief h2{font-size:28px}.goals{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.goals div{flex:1;min-width:90px;background:#f1f6ff;border-radius:16px;padding:8px 10px;text-align:center;box-shadow:inset 0 0 0 2.5px var(--edge)}.goals b{display:block;font:700 24px var(--head);color:var(--pur2)}.goals span{font-size:12px;color:var(--mu)}
+.hud{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 12px;margin-bottom:12px}.hud .nm{font:600 17px var(--head);flex:1;min-width:150px}.hud .nm small{display:block;font:700 12px var(--body);color:var(--mu)}
+.hud .it{display:flex;align-items:center;gap:5px;font:800 15px var(--body);background:#fff4d6;border-radius:12px;padding:6px 10px;box-shadow:inset 0 -3px 0 #ffd23f66}.hud .it svg{width:18px;height:18px}.hud .tm.low{color:var(--bad);animation:bl 1s infinite}@keyframes bl{50%{opacity:.5}}
+.stage{position:relative;border-radius:26px;overflow:hidden;border:4px solid #fff;background:#fbfdff;box-shadow:0 8px 0 #1b2a5e22,0 18px 30px #1b2a5e14}
+.scene{display:block;width:100%;height:230px}
+.track{display:flex;align-items:center;justify-content:center;padding:12px 14px 4px}
+.nd{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:800 14px var(--body);background:#fff;color:var(--mu);flex:none;box-shadow:0 3px 0 #1b2a5e22,inset 0 0 0 2.5px var(--edge)}
+.nd.on{background:radial-gradient(circle at 35% 30%,#8af0b0,var(--ok));color:#fff;box-shadow:0 3px 0 #168a5d,inset 0 2px 0 #ffffff88}.nd.cur{background:#fff3c4;color:#b27a00;box-shadow:0 0 0 4px #ffd23f88,inset 0 0 0 2.5px var(--sun2)}
+.ln{height:5px;flex:1;max-width:44px;background:#1b2a5e18;border-radius:3px}.ln.on{background:var(--ok)}
+.say{display:flex;gap:12px;align-items:center;padding:12px 16px}.say .bub{background:#fff;border-radius:18px;padding:11px 15px;font-size:14.5px;line-height:1.45;box-shadow:0 4px 0 #1b2a5e1c,inset 0 0 0 2.5px var(--edge)}
+.qcard{margin:0 14px 16px;background:#fff;border-radius:22px;padding:16px;box-shadow:0 6px 0 #1b2a5e1c,inset 0 0 0 3px #5cc8ff}
+.qtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:8px}.qtag{font:700 12px var(--head);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--pur);padding:3px 10px;border-radius:99px}
+.qtext{font:700 17px/1.5 var(--body);margin:6px 0 10px}.qfig{display:flex;justify-content:center;margin:4px 0}
+.opts{display:grid;gap:9px}.opts.two{grid-template-columns:1fr 1fr}
+.opt{font:800 16px var(--body);color:var(--ink);text-align:center;padding:13px;border-radius:15px;border:0;background:linear-gradient(180deg,#fff,#eef3ff);cursor:pointer;box-shadow:0 5px 0 #1b2a5e26,inset 0 0 0 2.5px var(--edge)}
+.opt:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 7px 0 #1b2a5e26,inset 0 0 0 2.5px var(--blue)}.opt:active:not(:disabled){transform:translateY(3px)}
+.opt.ok{background:linear-gradient(180deg,#d9fbe8,#b4f0cf);box-shadow:0 5px 0 #1c8a5266,inset 0 0 0 2.5px var(--ok)}.opt.no{background:linear-gradient(180deg,#ffe3e8,#ffc7d1);box-shadow:0 5px 0 #d9355566,inset 0 0 0 2.5px var(--bad)}.opt:disabled{cursor:default}
+.inrow{display:flex;gap:8px;align-items:center}.inrow input{flex:1;font:800 20px var(--body);padding:12px 14px;border-radius:15px;border:0;background:#f1f6ff;color:var(--ink);min-width:0;box-shadow:inset 0 3px 5px #1b2a5e22,inset 0 0 0 2.5px var(--edge)}.inrow .u{color:var(--mu);font-weight:800}
+.fb{margin-top:12px;border-radius:15px;padding:10px 13px;font-size:14.5px;line-height:1.5;background:#f1f6ff;box-shadow:inset 0 0 0 2.5px var(--edge)}.fb.ok{background:#e2fbee;box-shadow:inset 0 0 0 2.5px #22c58b88}.fb.no{background:#fff0f3;box-shadow:inset 0 0 0 2.5px #ff4d6d77}.fb b{color:var(--pur2)}
+.qnext{margin-top:12px;display:flex;justify-content:flex-end;gap:8px}
+.pl{display:block;width:100%;max-width:380px;aspect-ratio:1;margin:0 auto;border-radius:16px;background:#fff;box-shadow:0 0 0 3px #fff,0 0 0 5px #1b2a5e1f;touch-action:none;user-select:none}.pl.mini{max-width:120px}.pl.act{cursor:crosshair}
+.rd{text-align:center;font:600 18px var(--head);color:var(--pur2);margin:8px 0;min-height:26px}
+.sl{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin:8px 0}.sl label{font:700 16px var(--head);min-width:70px}.sl output{font:700 16px var(--head);min-width:48px;text-align:right;color:var(--pur2)}
+input[type=range]{width:100%;accent-color:#8b5cf6;height:30px}
+.mt2{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}.mi{border:0;background:#f1f6ff;border-radius:16px;padding:8px;cursor:pointer;display:grid;place-items:center;min-height:58px;font:800 16px var(--body);color:var(--ink);box-shadow:0 4px 0 #1b2a5e22,inset 0 0 0 2.5px var(--edge)}.mi.sel{box-shadow:0 4px 0 var(--pur2),inset 0 0 0 3px var(--pur);background:#efe9ff}.mi.done{background:#d9fbe8;box-shadow:inset 0 0 0 2.5px var(--ok);cursor:default}.mi.shk{animation:shk .3s}
+@keyframes shk{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.eqrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;font:600 26px var(--head);margin:10px 0}
+.slot{min-width:52px;height:48px;border-radius:13px;background:#f1f6ff;box-shadow:inset 0 3px 5px #1b2a5e22,inset 0 0 0 2.5px var(--pur);display:grid;place-items:center;padding:0 8px;cursor:pointer}.slot.hv{background:#efe9ff}
+.bank{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin:10px 0;min-height:52px}.tl{min-width:52px;height:48px;border:0;border-radius:13px;font:700 22px var(--head);color:#fff;background:linear-gradient(180deg,#a78bfa,var(--pur));box-shadow:0 5px 0 var(--pur2),inset 0 2px 0 #ffffff66;cursor:grab;touch-action:none;padding:0 10px}.tl.in{background:linear-gradient(180deg,#7cb4ff,var(--blue));box-shadow:0 3px 0 var(--blue2)}.tl.gh{position:fixed;z-index:50;pointer-events:none;opacity:.9;transform:translate(-50%,-50%) scale(1.1)}
+.res{text-align:center;padding:26px 16px}.res h2{font-size:34px;margin:6px 0}.res .rch{width:140px;margin:0 auto -6px;filter:drop-shadow(0 6px 0 #1b2a5e26)}.stars{font-size:44px;color:var(--sun);letter-spacing:6px;margin:8px 0;text-shadow:0 3px 0 var(--sun2)}.stars .o{color:#1b2a5e22;text-shadow:none}
+.rows{display:grid;gap:6px;max-width:340px;margin:14px auto;text-align:left}.rows div{display:flex;justify-content:space-between;background:#f1f6ff;border-radius:13px;padding:9px 13px}.rows .t{background:#fff0bf;box-shadow:inset 0 0 0 2.5px var(--sun)}.acts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.bdg{padding:14px 10px;border-radius:20px;background:#fff;text-align:center;box-shadow:0 5px 0 #1b2a5e20}.bdg .ic{width:56px;height:56px;margin:0 auto 6px}.bdg .ic svg{width:100%;height:100%}.bdg b{display:block;font:600 15px var(--head)}.bdg span{font-size:12px;color:var(--mu)}.bdg.off{filter:grayscale(1);opacity:.5}
+.prow{display:grid;grid-template-columns:150px 1fr 90px;gap:12px;align-items:center;padding:10px 0;border-bottom:2px dashed #1b2a5e18}.prow:last-child{border:0}.prow b{font:600 16px var(--head)}
+.lcard{padding:16px;margin-bottom:14px}.lcard h3{font-size:22px;margin-bottom:6px}.lcard p{line-height:1.55;margin:6px 0}.lcard .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.step{background:#f1f6ff;border-radius:14px;padding:9px 13px;margin:7px 0;font-size:15px;line-height:1.5;box-shadow:inset 0 0 0 2.5px var(--edge)}.step.ok{background:#e2fbee}
+.mini-top{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:8px}.mini-top b{font:700 22px var(--head)}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.mg{padding:16px}.mg h3{font-size:22px;margin:4px 0}
+@media(max-width:900px){.tiles,.stats{grid-template-columns:1fr 1fr}.alist{grid-template-columns:1fr 1fr}.badges{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:700px){.land{grid-template-columns:1fr;min-height:0}.hero{order:-1}.lcard .two,.mgrid{grid-template-columns:1fr}.prow{grid-template-columns:1fr}.badges{grid-template-columns:1fr 1fr}.top{gap:6px}}
+@media(max-width:600px){.scene{height:auto;aspect-ratio:560/190}.avs{grid-template-columns:repeat(3,1fr)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<div class="sky" id="sky" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <button class="brand" id="bHome" type="button" aria-label="Beranda LINE CITY"><span class="logo" id="logo" aria-hidden="true"></span>LINE CITY</button>
+    <nav class="nav" id="nav" aria-label="Menu"></nav>
+    <button class="btn ghost sm" id="bSound" type="button" aria-pressed="true">Suara: nyala</button>
+  </header>
+  <main id="main">
+    <section id="sLand"></section><section id="sProf" hidden></section><section id="sDash" hidden></section>
+    <section id="sMap" hidden></section><section id="sPlay" hidden></section><section id="sMini" hidden></section><section id="sAch" hidden></section><section id="sProg" hidden></section><section id="sRes" hidden></section>
+  </main>
+</div>
+<script>
+(() => {
+'use strict'
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)]
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1)), pick = a => a[rnd(0, a.length - 1)]
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = rnd(0, i);[a[i], a[j]] = [a[j], a[i]] } return a }
+let U = 0; const uid = () => 'u' + (++U)
+const KEY = 'mq_line_city_v1'
+const ang = v => v < 0 ? '−' + (-v) : String(v)
+const gcd = (a, b) => b ? gcd(b, a % b) : Math.abs(a)
+const fr = (n, d = 1) => { if (d < 0) { n = -n; d = -d } const g = gcd(n, d) || 1; n /= g; d /= g; return d === 1 ? ang(n) : `${n < 0 ? '−' : ''}${Math.abs(n)}/${d}` }
+const mx = (n, d) => { if (n === 0) return ''; const s = n < 0 ? '−' : '', a = Math.abs(n); return d === 1 ? (a === 1 ? s + 'x' : s + a + 'x') : (a === 1 ? `${s}x/${d}` : `${s}${a}x/${d}`) }
+const eq = (n, d, c) => { const g = gcd(n, d) || 1; n /= g; d /= g; if (d < 0) { n = -n; d = -d } const m = mx(n, d); return !m ? `y = ${ang(c)}` : `y = ${m}${c === 0 ? '' : c > 0 ? ' + ' + c : ' − ' + (-c)}` }
+const rp = n => 'Rp' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v))
+const NAMA = ['', 'Coordinate Park', 'Gradient Hill', 'Equation Center', 'Graph Academy', 'Line Challenge']
+
+/* ---------- state ---------- */
+const S0 = () => ({ name: '', av: 0, best: {}, unlocked: 1, coins2: 0, mxp: 0, learn: {}, mini: {}, tot: { ok: 0, no: 0 } })
+let S = S0()
+try { const j = JSON.parse(localStorage.getItem(KEY)); if (j && j.best) S = Object.assign(S0(), j) } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)) } catch (e) {} }
+const ping = m => { try { if (parent !== window) parent.postMessage({ mq: 'linecity', ...m }, '*') } catch (e) {} }
+let sound = true, ac
+const beep = (f, d = .12, t = 'sine') => { if (!sound) return; try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); const o = ac.createOscillator(), g = ac.createGain(); o.type = t; o.frequency.value = f; g.gain.value = .05; g.gain.exponentialRampToValueAtTime(.001, ac.currentTime + d); o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime + d) } catch (e) {} }
+const sfx = { ok: () => { beep(660); setTimeout(() => beep(880), 90) }, no: () => beep(180, .22, 'sawtooth'), win: () => [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => beep(f, .18), i * 110)), tap: () => beep(520, .05) }
+const totals = () => { let score = 0, cr = 0, st = 0, done = 0, mis = 0; for (let i = 1; i <= 5; i++) { const b = S.best[i]; if (b) { done++; score += b.score; cr += b.crystals; st += b.stars; mis += b.mistakes } } return { score, cr, st, done, mis } }
+const xpOf = () => { const T = totals(); return Math.round(T.score / 10) + S.mxp }
+const LV_XP = 150
+const lvlOf = () => 1 + Math.floor(xpOf() / LV_XP)
+const coinsOf = () => totals().cr * 5 + S.coins2
+const RANK = ['Magang Kota', 'Tukang Garis', 'Arsitek Muda', 'Perancang Kota', 'Insinyur Garis', 'Walikota Line City']
+const rankOf = () => RANK[Math.min(RANK.length - 1, Math.floor((lvlOf() - 1) / 2))]
+
+/* ---------- visual: 3D cartoon ---------- */
+const G = (id, a, b, rad = true) => rad ? `<radialGradient id="${id}" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></radialGradient>` : `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>`
+document.body.insertAdjacentHTML('afterbegin', `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>${[
+  G('gSkin', '#ffe6c9', '#f0b27e'), G('gShirt', '#ffffff', '#d6e6ff', false), G('gHair', '#8a5a3c', '#3a2214', false), G('gOver', '#a78bfa', '#6d3fe0', false), G('gHat', '#ffe066', '#f2a900', false),
+  G('gCoin', '#fff4b0', '#f2a900'), G('gStar', '#fff3a0', '#ffb300'), G('gBlue', '#8fc3ff', '#2f6fe0', false), G('gMint', '#9cf0d2', '#14a373', false), G('gPur', '#c4b0ff', '#6d3fe0', false), G('gYel', '#fff0a0', '#e3a100', false),
+  G('gPink', '#ffc4de', '#ff5fa2', false), G('gGrass', '#8af0c8', '#2fbf8a', false), G('gGrey', '#8591b3', '#4d5a80', false), G('gWater', '#9be3ff', '#3aa6e8', false), G('gGlass', '#d6f1ff', '#7cc4f5', false)].join('')}</defs></svg>`)
+const O = '#1b2a5e', OS = `stroke="${O}" stroke-opacity=".28" stroke-width="2" stroke-linejoin="round"`
+const ico = {
+  coin: `<circle cx="32" cy="32" r="25" fill="url(#gCoin)" ${OS}/><circle cx="32" cy="32" r="18" fill="none" stroke="#c58b00" stroke-width="3" opacity=".6"/><text x="32" y="40" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="24" fill="#a36f00">$</text><ellipse cx="22" cy="20" rx="6" ry="3.5" fill="#fff" opacity=".7" transform="rotate(-35 22 20)"/>`,
+  star: `<path d="M32 5l8.500 17.500 19 2.500-14 13 3.800 19L32 48.500 14.700 57l3.800-19-14-13 19-2.500z" fill="url(#gStar)" ${OS}/><path d="M26 18l-4 8" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".7"/>`,
+  xp: `<path d="M36 4L12 36h16l-4 24 28-34H36z" fill="url(#gPur)" ${OS}/><path d="M33 12l-10 18" stroke="#fff" stroke-width="3.500" stroke-linecap="round" opacity=".6"/>`,
+  lvl: `<path d="M32 4l24 10v20c0 14-10 22-24 28C18 56 8 48 8 34V14z" fill="url(#gBlue)" ${OS}/><path d="M32 14l14 6v12c0 8-6 13-14 16-8-3-14-8-14-16V20z" fill="#fff" opacity=".25"/><path d="M24 34l6 6 11-13" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`,
+  prog: `<rect x="6" y="36" width="12" height="22" rx="3" fill="url(#gMint)" ${OS}/><rect x="24" y="22" width="12" height="36" rx="3" fill="url(#gBlue)" ${OS}/><rect x="42" y="8" width="12" height="50" rx="3" fill="url(#gPur)" ${OS}/>`,
+  map: `<path d="M6 14l16-6 20 6 16-6v42l-16 6-20-6-16 6z" fill="url(#gMint)" ${OS}/><path d="M22 8v42M42 14v42" stroke="#fff" stroke-width="3" opacity=".6"/><circle cx="34" cy="30" r="6" fill="#ff5d6c" stroke="#fff" stroke-width="2.500"/>`,
+  book: `<rect x="10" y="8" width="42" height="48" rx="5" fill="url(#gBlue)" ${OS}/><rect x="10" y="8" width="8" height="48" rx="3" fill="#1d4ed8"/><rect x="24" y="18" width="20" height="13" rx="3" fill="#fff" opacity=".9"/><path d="M24 38h18M24 44h12" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/>`,
+  game: `<rect x="6" y="18" width="52" height="30" rx="14" fill="url(#gPur)" ${OS}/><path d="M20 26v14M13 33h14" stroke="#fff" stroke-width="4.500" stroke-linecap="round"/><circle cx="42" cy="30" r="4" fill="#ffd23f"/><circle cx="50" cy="37" r="4" fill="#5cc8ff"/>`,
+  trophy: `<path d="M18 8h28v16c0 9-6 15-14 15s-14-6-14-15z" fill="url(#gYel)" ${OS}/><path d="M18 12H8c0 10 4 16 12 17M46 12h10c0 10-4 16-12 17" fill="none" stroke="#e3a100" stroke-width="4"/><rect x="28" y="38" width="8" height="10" fill="#e3a100"/><rect x="18" y="48" width="28" height="9" rx="3" fill="url(#gPur)" ${OS}/>`,
+  heart: '<path d="M32 56S6 40 6 22a14 14 0 0 1 26-7 14 14 0 0 1 26 7c0 18-26 34-26 34z" fill="#ff4d6d" stroke="#b81f3d" stroke-width="3"/><ellipse cx="20" cy="20" rx="5" ry="3.5" fill="#fff" opacity=".7"/>',
+  clock: '<circle cx="32" cy="34" r="24" fill="#fff" stroke="#e57a00" stroke-width="6"/><path d="M32 20v15l9 6" stroke="#e57a00" stroke-width="6" fill="none" stroke-linecap="round"/>',
+  line: `<path d="M8 56V8M8 56h50" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M12 50L56 14" stroke="#ffd23f" stroke-width="7" stroke-linecap="round"/><circle cx="12" cy="50" r="5" fill="#fff"/><circle cx="56" cy="14" r="5" fill="#fff"/>`,
+  lock: `<rect x="14" y="28" width="36" height="28" rx="6" fill="url(#gCoin)" ${OS}/><path d="M22 28v-8a10 10 0 0 1 20 0v8" fill="none" stroke="#8a95b0" stroke-width="6" stroke-linecap="round"/><circle cx="32" cy="42" r="4" fill="#a36f00"/>`
+}
+const ic = (k, cls = '') => `<svg viewBox="0 0 64 64" class="${cls}" aria-hidden="true">${ico[k]}</svg>`
+const medal = (sym, c1 = 'gBlue') => `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M20 4h10l4 18H24zM34 4h10l-8 18h-8z" fill="#ff5d6c" ${OS}/><circle cx="32" cy="38" r="22" fill="url(#gYel)" ${OS}/><circle cx="32" cy="38" r="16" fill="url(#${c1})" ${OS}/>${sym}</svg>`
+const W = t => `<text x="32" y="46" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="22" fill="#fff">${t}</text>`
+$('#logo').innerHTML = ic('line')
+
+/* karakter pemandu: Lina, desainer kota SMP */
+const guideG = mood => {
+  const arm = (d, hx, hy) => `<path d="${d}" stroke="${O}" stroke-opacity=".2" stroke-width="13" stroke-linecap="round" fill="none" transform="translate(0 1.5)"/><path d="${d}" stroke="url(#gShirt)" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="${hx}" cy="${hy}" r="7" fill="url(#gSkin)" ${OS}/>`
+  const arms = { smile: arm('M42 92L34 124', 34, 126) + arm('M78 92L98 70', 100, 66), cheer: arm('M42 92L24 62', 23, 57) + arm('M78 92L96 62', 97, 57), think: arm('M42 92L34 124', 34, 126) + arm('M78 92L90 114L70 80', 70, 76), sad: arm('M42 92L36 126', 36, 128) + arm('M78 92L84 126', 84, 128) }[mood]
+  const eyes = mood === 'cheer' ? `<path d="M41 52q6-8 12 0M67 52q6-8 12 0" stroke="${O}" stroke-width="3.5" fill="none" stroke-linecap="round"/>` : [47, 73].map(x => `<ellipse cx="${x}" cy="52" rx="6.5" ry="8" fill="#fff" ${OS}/><circle cx="${x + (mood === 'think' ? 2 : 0)}" cy="${mood === 'think' ? 50 : mood === 'sad' ? 55 : 53}" r="4.6" fill="${O}"/><circle cx="${x + 1.5}" cy="${mood === 'sad' ? 53 : 50.5}" r="1.6" fill="#fff"/>`).join('')
+  const brow = mood === 'sad' ? `<path d="M40 43l12 4M80 43l-12 4" stroke="#3a2214" stroke-width="3" stroke-linecap="round"/>` : mood === 'think' ? `<path d="M40 43h12M68 40l12-2" stroke="#3a2214" stroke-width="3" stroke-linecap="round"/>` : ''
+  const mouth = { smile: `<path d="M50 63q10 10 20 0z" fill="#8a2a3a" stroke="#8a2a3a" stroke-width="2.5" stroke-linejoin="round"/>`, cheer: `<path d="M47 61q13 18 26 0z" fill="#8a2a3a" stroke="#8a2a3a" stroke-width="2.5" stroke-linejoin="round"/><path d="M53 69q7 5 14 0" stroke="#ff7a8a" stroke-width="3" fill="none"/>`, think: `<path d="M54 66q6 2 14-2" stroke="#8a2a3a" stroke-width="3" fill="none" stroke-linecap="round"/>`, sad: `<path d="M51 68q9-8 18 0" stroke="#8a2a3a" stroke-width="3" fill="none" stroke-linecap="round"/>` }[mood]
+  return `<ellipse cx="60" cy="193" rx="36" ry="6" fill="${O}" opacity=".18"/>
+  <circle cx="30" cy="60" r="14" fill="url(#gHair)" ${OS}/><path d="M24 70q-10 18 0 34" stroke="url(#gHair)" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <rect x="45" y="128" width="13" height="52" rx="6" fill="url(#gOver)" ${OS}/><rect x="62" y="128" width="13" height="52" rx="6" fill="url(#gOver)" ${OS}/>
+  <path d="M41 184h19a4 4 0 0 1 4 6H38a3 3 0 0 1 3-6zM60 184h19a4 4 0 0 1 3 6H59z" fill="#fff" ${OS}/><path d="M38 189h26M58 189h26" stroke="#5cc8ff" stroke-width="3"/>
+  <path d="M38 88q0-8 10-8h24q10 0 10 8v46a6 6 0 0 1-6 6H44a6 6 0 0 1-6-6z" fill="url(#gShirt)" ${OS}/>
+  <path d="M46 98h28v36a6 6 0 0 1-6 6H52a6 6 0 0 1-6-6z" fill="url(#gOver)" ${OS}/><path d="M46 98l-3-14M74 98l3-14" stroke="#6d3fe0" stroke-width="6" stroke-linecap="round"/><rect x="54" y="108" width="12" height="10" rx="3" fill="#fff" opacity=".85"/>
+  ${arms}
+  <rect x="53" y="72" width="14" height="14" rx="5" fill="url(#gSkin)"/>
+  <circle cx="33" cy="56" r="6" fill="url(#gSkin)" ${OS}/><circle cx="87" cy="56" r="6" fill="url(#gSkin)" ${OS}/>
+  <circle cx="60" cy="52" r="29" fill="url(#gSkin)" ${OS}/>
+  <path d="M31 50C30 28 46 22 60 22s30 6 29 28c-5-10-14-14-29-14S36 40 31 50z" fill="url(#gHair)" ${OS}/>
+  <path d="M28 34q0-14 12-18Q60 6 80 16q12 6 12 18z" fill="url(#gHat)" ${OS}/><rect x="24" y="31" width="72" height="8" rx="4" fill="#f2a900" ${OS}/><rect x="54" y="12" width="12" height="20" rx="5" fill="#fff3a0" opacity=".8"/><path d="M40 20q8-5 18-5" stroke="#fff" stroke-opacity=".6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <circle cx="41" cy="62" r="5.5" fill="#ff8aa0" opacity=".55"/><circle cx="79" cy="62" r="5.5" fill="#ff8aa0" opacity=".55"/>
+  ${brow}${eyes}${mouth}${mood === 'sad' ? '<path d="M88 44q4 7 0 10q-4-3 0-10z" fill="#7be0ff" stroke="#1aa6dc" stroke-width="1.5"/>' : ''}`
+}
+const guideSVG = (mood, cls = '') => `<svg viewBox="0 0 120 200" class="${cls}" role="img" aria-label="Lina, desainer kota pemandu permainan">${guideG(mood)}</svg>`
+const headSVG = mood => `<svg viewBox="22 6 76 76" aria-hidden="true"><rect x="0" y="0" width="120" height="100" fill="#bfe6ff"/>${guideG(mood)}</svg>`
+function react(mood) { const a = $('#av'), s = $('#stu'); if (a) a.innerHTML = headSVG(mood); if (s) s.innerHTML = guideG(mood) }
+/* avatar pemain */
+const SKIN = ['#ffe0c2', '#f5c28f', '#d9a066', '#a86f45', '#ffd9b8', '#e8b88a'], HAIR = ['#2a1a12', '#5a3a22', '#161616', '#b8742c', '#3a2a6a', '#7a2a2a'], BG = ['#bfe6ff', '#d6c8ff', '#c8f5e3', '#fff0a8', '#ffd3e6', '#ffe0c2']
+const avatarSVG = i => {
+  const sk = SKIN[i], hr = HAIR[i], st = i
+  const hair = [`<path d="M26 52C24 26 40 20 50 20s26 6 24 32c-4-10-12-14-24-14S30 42 26 52z" fill="${hr}"/>`, `<path d="M26 52C24 26 40 20 50 20s26 6 24 32c-4-10-12-14-24-14S30 42 26 52z" fill="${hr}"/><circle cx="76" cy="40" r="9" fill="${hr}"/>`, `<g fill="${hr}"><circle cx="30" cy="40" r="11"/><circle cx="42" cy="28" r="12"/><circle cx="58" cy="28" r="12"/><circle cx="70" cy="40" r="11"/></g>`, `<path d="M26 50C26 28 40 24 50 24s24 4 24 26z" fill="${hr}"/><path d="M22 44h56a8 8 0 0 0-8-10H30a8 8 0 0 0-8 10z" fill="#ff5d6c"/><rect x="60" y="40" width="22" height="7" rx="3.500" fill="#d93a3a"/>`, `<path d="M26 52C24 26 40 20 50 20s26 6 24 32c-4-10-12-14-24-14S30 42 26 52z" fill="${hr}"/><rect x="26" y="34" width="48" height="7" rx="3.500" fill="#8b5cf6"/>`, `<path d="M26 50C24 28 40 22 50 22s26 6 24 28c-4-8-12-12-24-12S30 42 26 50z" fill="${hr}"/>`][st]
+  const gl = st === 5 ? `<g fill="none" stroke="#1b2a5e" stroke-width="2.500"><circle cx="40" cy="54" r="8"/><circle cx="60" cy="54" r="8"/><path d="M48 54h4"/></g>` : ''
+  return `<svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="${BG[i]}"/><path d="M18 100q0-22 32-22t32 22z" fill="#8b5cf6"/><rect x="43" y="68" width="14" height="14" fill="${sk}"/><circle cx="50" cy="54" r="26" fill="${sk}" stroke="#1b2a5e" stroke-opacity=".2" stroke-width="2"/>${hair}<circle cx="40" cy="54" r="3.600" fill="#1b2a5e"/><circle cx="60" cy="54" r="3.600" fill="#1b2a5e"/><circle cx="41" cy="52.800" r="1.200" fill="#fff"/><circle cx="61" cy="52.800" r="1.200" fill="#fff"/><circle cx="34" cy="63" r="4" fill="#ff8aa0" opacity=".5"/><circle cx="66" cy="63" r="4" fill="#ff8aa0" opacity=".5"/><path d="M43 66q7 7 14 0" stroke="#8a2a3a" stroke-width="2.800" fill="none" stroke-linecap="round"/>${gl}</svg>`
+}
+
+/* ---------- bidang koordinat ---------- */
+const lineEnds = (m, c, r, s) => { const N = (2 * r + 2) * s, h = N / 2, x1 = -r - 1, x2 = r + 1; return [h + x1 * s, h - (m * x1 + c) * s, h + x2 * s, h - (m * x2 + c) * s] }
+const plane = (o = {}) => {
+  const r = o.r || 6, s = o.s || (o.mini ? 30 : 22), N = (2 * r + 2) * s, h = N / 2, X = x => h + x * s, Y = y => h - y * s, id = uid()
+  let g = ''
+  for (let i = -r; i <= r; i++) g += `<path d="M${X(i)} ${Y(-r)}V${Y(r)}M${X(-r)} ${Y(i)}H${X(r)}" stroke="${i ? '#c9d6f5' : '#1b2a5e'}" stroke-width="${i ? 1 : 2.2}"/>`
+  g += `<path d="M${X(r) + 2} ${h - 5}l9 5-9 5zM${h - 5} ${Y(r) - 2}l5-9 5 9z" fill="#1b2a5e"/><text x="${X(r) + 4}" y="${h + 20}" font-family="Fredoka,sans-serif" font-size="12" fill="#1b2a5e">x</text><text x="${h + 12}" y="${Y(r) - 2}" font-family="Fredoka,sans-serif" font-size="12" fill="#1b2a5e">y</text>`
+  if (!o.mini) for (let i = -r; i <= r; i++) if (i) g += `<text x="${X(i)}" y="${h + 13}" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" font-weight="800" fill="#5d6c9c">${ang(i)}</text><text x="${h - 5}" y="${Y(i) + 3}" text-anchor="end" font-family="Nunito,sans-serif" font-size="9" font-weight="800" fill="#5d6c9c">${ang(i)}</text>`
+  const lines = (o.lines || []).map(l => { const [a, b, c, d] = lineEnds(l.m, l.c, r, s); return `<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="${l.col || '#8b5cf6'}" stroke-width="${o.mini ? 4 : 4.5}" stroke-linecap="round" clip-path="url(#${id})"/>` }).join('')
+  const live = o.live ? (() => { const [a, b, c, d] = lineEnds(o.live.m, o.live.c, r, s); return `<line id="lv" x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="#8b5cf6" stroke-width="4.5" stroke-linecap="round" clip-path="url(#${id})"/>` })() : ''
+  const pts = (o.pts || []).map(p => `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="${p.ring ? 8 : 6.5}" fill="${p.ring ? 'none' : (p.col || '#ff5d6c')}" stroke="${p.ring ? '#22c58b' : '#fff'}" stroke-width="${p.ring ? 3 : 2.5}"/>${p.l ? `<text x="${X(p.x) + 9}" y="${Y(p.y) - 8}" font-family="Fredoka,sans-serif" font-weight="600" font-size="13" fill="#1b2a5e" stroke="#fff" stroke-width="3" paint-order="stroke">${p.l}</text>` : ''}`).join('')
+  return `<svg class="pl${o.mini ? ' mini' : ''}${o.act ? ' act' : ''}" data-r="${r}" data-s="${s}" viewBox="0 0 ${N} ${N}" role="img" aria-label="${o.label || 'Bidang koordinat'}"><defs><clipPath id="${id}"><rect x="${X(-r) - 4}" y="${Y(r) - 4}" width="${2 * r * s + 8}" height="${2 * r * s + 8}"/></clipPath></defs><rect width="${N}" height="${N}" rx="16" fill="#fff"/>${g}${lines}${live}${pts}<g id="mkg">${o.mk || ''}</g></svg>`
+}
+const gridPt = (svg, ev) => { const b = svg.getBoundingClientRect(), r = +svg.dataset.r, s = +svg.dataset.s, N = (2 * r + 2) * s, k = N / b.width; return { x: clamp(Math.round(((ev.clientX - b.left) * k - N / 2) / s), -r, r), y: clamp(Math.round((N / 2 - (ev.clientY - b.top) * k) / s), -r, r) } }
+const mk = (svg, p, col = '#ff9f1c') => { const r = +svg.dataset.r, s = +svg.dataset.s, h = (2 * r + 2) * s / 2; svg.querySelector('#mkg').innerHTML = `<circle cx="${h + p.x * s}" cy="${h - p.y * s}" r="9" fill="${col}" stroke="#fff" stroke-width="3"/><circle cx="${h + p.x * s}" cy="${h - p.y * s}" r="15" fill="none" stroke="${col}" stroke-opacity=".4" stroke-width="3"/>` }
+const setLive = (svg, m, c) => { const r = +svg.dataset.r, s = +svg.dataset.s, e = lineEnds(m, c, r, s), l = svg.querySelector('#lv'); ['x1', 'y1', 'x2', 'y2'].forEach((k, i) => l.setAttribute(k, e[i])) }
+
+/* ---------- bangunan 3D ---------- */
+const CL = { blue: ['#5aa0ff', '#2f6fe0', '#a9d0ff'], pur: ['#a78bfa', '#6d3fe0', '#d9ccff'], mint: ['#4de0b0', '#14a373', '#b0f7e0'], yel: ['#ffd23f', '#d99a00', '#fff0a0'], pink: ['#ff8ec0', '#d94d8c', '#ffc4de'], wht: ['#ffffff', '#c9d6f5', '#ffffff'], red: ['#ff6b6b', '#c93a3a', '#ffb0b0'], grey: ['#9aa6c8', '#6b7799', '#c9d2ea'] }
+const box3 = (x, y, w, h, d, c) => { const [f, s, t] = CL[c] || CL.blue; return `<path d="M${x + w} ${y}l${d} ${-d * .6}v${h}l${-d} ${d * .6}z" fill="${s}" ${OS}/><path d="M${x} ${y}l${d} ${-d * .6}h${w}l${-d} ${d * .6}z" fill="${t}" ${OS}/><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${f}" ${OS}/>` }
+const wins = (x, y, w, h, cols, rows, col = '#fff6b0') => { let o = ''; const gw = w / cols, gh = h / rows; for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) o += `<rect x="${x + c * gw + gw * .2}" y="${y + r * gh + gh * .2}" width="${gw * .6}" height="${gh * .5}" rx="1.500" fill="${col}" opacity=".9"/>`; return o }
+const tree = (x, y, k = 1) => `<g transform="translate(${x} ${y}) scale(${k})"><ellipse cx="0" cy="1" rx="11" ry="4" fill="#0b6a4a" opacity=".25"/><rect x="-3" y="-14" width="6" height="15" rx="2" fill="#a0622d"/><circle cx="0" cy="-26" r="14" fill="url(#gGrass)" stroke="#138a5e" stroke-opacity=".5" stroke-width="2"/><circle cx="-5" cy="-31" r="4" fill="#fff" opacity=".4"/></g>`
+const crane = (x, y) => `<g transform="translate(${x} ${y})" stroke="#e57a00" stroke-width="3" fill="none"><path d="M0 0V-74M-6 0V-74M0 -70l30-5h-50" /><path d="M24 -74v22" stroke="#1b2a5e" stroke-width="2"/><rect x="18" y="-52" width="12" height="9" rx="2" fill="#ffd23f" stroke="#e57a00"/><path d="M-6 -60h6M-6 -45h6M-6 -30h6M-6 -15h6" stroke-width="2"/></g>`
+const fence = (x, w) => { let o = ''; for (let i = 0; i < w; i += 14) o += `<rect x="${x + i}" y="22" width="10" height="26" fill="${(i / 14) % 2 ? '#fff' : '#ff9f1c'}" stroke="#e57a00" stroke-opacity=".5" stroke-width="1.500"/>`; return o }
+/* area di peta: n = 1..5, st = 0 terkunci, 1 sedang dibangun, 2 selesai */
+const zoneArt = (n, st) => {
+  const pad = `<ellipse cx="0" cy="44" rx="120" ry="38" fill="#0b6a4a" opacity=".22"/><ellipse cx="0" cy="38" rx="118" ry="38" fill="url(#gGrass)" stroke="#fff" stroke-width="4"/>`
+  const full = st === 2, lock = st === 0
+  let a = ''
+  if (lock) a = fence(-50, 100) + crane(70, 40) + box3(-40, 0, 60, 24, 12, 'grey')
+  else if (n === 1) a = `<path d="M-90 50L-20 14M90 50L20 14M-60 56L40 12M60 56L-40 12" stroke="#fff" stroke-width="6" opacity=".55"/><ellipse cx="0" cy="30" rx="30" ry="12" fill="#fff" ${OS}/><ellipse cx="0" cy="28" rx="23" ry="8" fill="url(#gWater)"/><path d="M0 28V0M0 8q-14-2-16 10M0 8q14-2 16 10" stroke="#9be3ff" stroke-width="4" fill="none" stroke-linecap="round"/>${tree(-78, 40, .9)}${tree(72, 38, .9)}${full ? tree(-50, 26, .8) + tree(52, 24, .8) + tree(0, 8, .7) + `<g><rect x="-30" y="-6" width="4" height="26" fill="#6b7799"/><circle cx="-28" cy="-10" r="6" fill="#ffe066"/></g><circle cx="-62" cy="46" r="4" fill="#ff7eb6"/><circle cx="-54" cy="50" r="4" fill="#ffd23f"/><circle cx="66" cy="48" r="4" fill="#ff7eb6"/>` : ''}`
+  else if (n === 2) a = `<path d="M-108 44Q-40 -56 14 -50Q70 -42 108 44Z" fill="url(#gGrass)" stroke="#138a5e" stroke-opacity=".5" stroke-width="3"/><path d="M-70 40Q-20 18 20 -34" stroke="#6b7799" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M-70 40Q-20 18 20 -34" stroke="#fff" stroke-width="2.500" stroke-dasharray="6 7" fill="none"/>${box3(-30, -2, 26, 22, 9, 'pink')}<path d="M-33 -2l16-14 16 14z" fill="#ff5d6c" ${OS}/>${full ? `${box3(40, 4, 24, 20, 8, 'yel')}<path d="M37 4l15-13 15 13z" fill="#8b5cf6" ${OS}/><path d="M14 -50V-80" stroke="#1b2a5e" stroke-width="3"/><path d="M14 -80l24 7-24 8z" fill="#ff5d6c" ${OS}/>` : crane(60, 36)}`
+  else if (n === 3) { const k = full ? 1 : .5; a = box3(-76, 40 - 78 * k, 40, 78 * k, 14, 'blue') + wins(-76, 40 - 78 * k, 40, 78 * k, 3, Math.round(6 * k)) + box3(-26, 40 - 112 * k, 44, 112 * k, 14, 'pur') + wins(-26, 40 - 112 * k, 44, 112 * k, 3, Math.round(9 * k)) + box3(28, 40 - 90 * k, 38, 90 * k, 14, 'mint') + wins(28, 40 - 90 * k, 38, 90 * k, 3, Math.round(7 * k)) + (full ? `<path d="M-4 -72V-96" stroke="#1b2a5e" stroke-width="3"/><circle cx="-4" cy="-98" r="5" fill="#ff5d6c"/><rect x="-64" y="-52" width="52" height="20" rx="8" fill="#ffd23f" ${OS} transform="translate(30 -28)"/><text x="-8" y="-66" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="11" fill="#1b2a5e">y = mx + c</text>` : crane(86, 40)) }
+  else if (n === 4) a = box3(-64, -14, 128, 52, 14, 'wht') + `<path d="M-70 -14l70-34 70 34z" fill="#8b5cf6" ${OS}/><rect x="-14" y="8" width="28" height="30" rx="4" fill="#5aa0ff" ${OS}/>${[-50, -34, 22, 38].map(x => `<rect x="${x}" y="-2" width="10" height="16" rx="2" fill="#9be3ff" ${OS}/>`).join('')}<circle cx="0" cy="-26" r="9" fill="#fff" ${OS}/><path d="M0 -26v-6M0 -26l5 3" stroke="#1b2a5e" stroke-width="2.500" stroke-linecap="round"/>${full ? `<rect x="-52" y="-66" width="0" height="0"/><g transform="translate(70 8)"><rect x="-4" y="-20" width="38" height="28" rx="5" fill="#fff" ${OS}/><path d="M2 4L10 -4L18 0L28 -14" stroke="#22c58b" stroke-width="3" fill="none" stroke-linecap="round"/></g>` : crane(86, 40)}`
+  else a = box3(-26, -88, 52, 128, 16, 'blue') + `<rect x="-26" y="-88" width="52" height="128" fill="url(#gGlass)" opacity=".55"/>` + wins(-26, -86, 52, 120, 3, 10, '#ffffff') + (full ? `<path d="M0 -88V-116" stroke="#1b2a5e" stroke-width="3"/><path d="M0 -116l26 8-26 8z" fill="#ffd23f" ${OS}/><g transform="translate(-76 -18) scale(.8)"><path d="M18 8h28v16c0 9-6 15-14 15s-14-6-14-15z" fill="url(#gYel)" ${OS}/><rect x="28" y="38" width="8" height="10" fill="#e3a100"/><rect x="18" y="48" width="28" height="9" rx="3" fill="url(#gPur)" ${OS}/></g>${tree(-70, 42, .9)}${tree(70, 42, .9)}` : crane(70, 40) + `<rect x="-70" y="14" width="40" height="26" fill="#e9efff" ${OS}/>`)
+  return `<g class="zart" ${lock ? 'style="filter:grayscale(.75) opacity(.85)"' : ''}>${pad}${a}</g>`
+}
+const ZPOS = [[0, 0], [180, 150], [830, 135], [500, 300], [190, 455], [815, 455]]
+const cityMap = (F = 0) => {
+  const un = n => F || n <= S.unlocked, dn = n => F ? true : !!S.best[n], stt = n => dn(n) ? 2 : un(n) ? 1 : 0
+  const road = (a, b, on) => { const [x1, y1] = ZPOS[a], [x2, y2] = ZPOS[b]; return `<path d="M${x1} ${y1 + 20}L${x2} ${y2 + 20}" stroke="${on ? '#6b7799' : '#b9c4e0'}" stroke-width="22" stroke-linecap="round"/>${on ? `<path d="M${x1} ${y1 + 20}L${x2} ${y2 + 20}" stroke="#fff" stroke-width="3" stroke-dasharray="14 12" stroke-linecap="round"/>` : ''}` }
+  const bridge = (x, y, on, ang = 0) => `<g transform="translate(${x} ${y}) rotate(${ang})" opacity="${on ? 1 : .35}"><rect x="-34" y="-14" width="68" height="28" rx="6" fill="#ffd23f" stroke="#e57a00" stroke-width="3"/><path d="M-26 -14v-12M0 -14v-12M26 -14v-12M-26 -26h52" stroke="#e57a00" stroke-width="3" fill="none"/></g>`
+  let o = `<svg viewBox="0 0 1000 600" aria-label="Peta Line City"><defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b6f2d8"/><stop offset="1" stop-color="#7fe0b8"/></linearGradient></defs><rect width="1000" height="600" fill="url(#mg)"/>`
+  o += `<path d="M-10 372C180 340 330 420 520 392S860 350 1010 392V430C860 392 700 450 520 432S190 380 -10 412Z" fill="url(#gWater)" stroke="#fff" stroke-width="4"/>`
+  o += road(1, 3, un(3)) + road(2, 3, un(3)) + road(3, 4, un(4)) + road(3, 5, un(5)) + road(1, 2, un(2)) + road(4, 5, un(5))
+  o += bridge(345, 394, un(4), -18) + bridge(655, 395, un(5), 18)
+  for (const [x, y] of [[60, 300], [940, 290], [450, 560], [650, 560], [330, 60], [660, 40]]) o += tree(x, y, 1.2)
+  for (let n = 1; n <= 5; n++) { const [x, y] = ZPOS[n], s = stt(n), b = F ? null : S.best[n]
+    o += `<g class="zone${s ? '' : ' lock'}" data-n="${n}" transform="translate(${x} ${y})" role="button" tabindex="0" aria-label="${NAMA[n]}${s === 0 ? ', terkunci' : s === 2 ? ', selesai' : ', sedang dibangun'}">${zoneArt(n, s)}<g transform="translate(0 96)"><rect x="-88" y="-16" width="176" height="32" rx="14" fill="#fff" stroke="#1b2a5e" stroke-opacity=".2" stroke-width="2"/><circle cx="-72" cy="0" r="12" fill="${s === 0 ? '#9aa6c8' : '#8b5cf6'}"/><text x="-72" y="5" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="14" fill="#fff">${n}</text><text x="6" y="5.500" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="600" font-size="15" fill="#1b2a5e">${NAMA[n]}</text></g>${b ? `<g transform="translate(0 124)">${[0, 1, 2].map(i => `<path transform="translate(${(i - 1) * 26 - 11} -12) scale(.34)" d="M32 5l8.500 17.500 19 2.500-14 13 3.800 19L32 48.500 14.700 57l3.800-19-14-13 19-2.500z" fill="${i < b.stars ? '#ffc400' : '#c9d2ea'}" stroke="#fff" stroke-width="3"/>`).join('')}</g>` : ''}${s === 0 ? `<g transform="translate(0 -10)"><circle r="20" fill="#fff" stroke="#1b2a5e" stroke-opacity=".2" stroke-width="2"/><g transform="translate(-14 -14) scale(.44)">${ico.lock}</g></g>` : ''}</g>`
+  }
+  return o + '</svg>'
+}
+/* ---------- adegan di ruang permainan ---------- */
+const scene = (n, c = 0, need = 5, mood = 'smile') => {
+  const f = Math.min(1, c / need), mob = innerWidth < 600, id = uid()
+  const K = Math.round(f * 8)
+  const FG = [
+    `<path d="M120 150L560 150" stroke="#fff" stroke-width="0"/>${Array.from({ length: 6 }, (_, i) => { const x = 150 + i * 72, on = i < Math.round(f * 6); return `<g opacity="${on ? 1 : .2}">${tree(x, 128, .85)}</g>` }).join('')}<ellipse cx="480" cy="118" rx="52" ry="16" fill="#fff" ${OS}/><ellipse cx="480" cy="116" rx="40" ry="11" fill="url(#gWater)" opacity="${.3 + .7 * f}"/><path d="M480 116V82" stroke="#9be3ff" stroke-width="5" stroke-linecap="round" opacity="${f >= 1 ? 1 : .2}"/>`,
+    `<path d="M120 148Q250 150 340 90Q400 40 540 38V148Z" fill="url(#gGrass)" ${OS}/><path d="M130 142Q260 140 350 84Q410 44 540 42" stroke="#6b7799" stroke-width="10" fill="none" stroke-linecap="round"/>${[[200, 128, 'pink'], [290, 104, 'yel'], [380, 66, 'mint'], [470, 48, 'blue']].map(([x, y, c2], i) => `<g opacity="${i < Math.round(f * 4) ? 1 : .2}">${box3(x - 14, y - 22, 28, 22, 9, c2)}<path d="M${x - 17} ${y - 22}l17-14 17 14z" fill="#ff5d6c" ${OS}/></g>`).join('')}<path d="M520 42V8" stroke="#1b2a5e" stroke-width="3"/><path d="M520 8l26 8-26 8z" fill="#ffd23f" ${OS} opacity="${f >= 1 ? 1 : .2}"/>`,
+    `${box3(240, 128 - K * 12, 70, K * 12 || 2, 20, 'pur')}${wins(240, 128 - K * 12, 70, K * 12 || 2, 3, Math.max(K, 1))}${crane(400, 130)}${K >= 8 ? `<path d="M275 24V4" stroke="#1b2a5e" stroke-width="3"/><circle cx="275" cy="2" r="5" fill="#ff5d6c"/>` : ''}${box3(150, 100, 40, 28, 12, 'blue')}${box3(460, 96, 44, 32, 12, 'mint')}`,
+    `<path d="M120 130H560" stroke="#6b7799" stroke-width="0"/><rect x="120" y="136" width="440" height="40" fill="url(#gWater)"/>${Array.from({ length: 6 }, (_, i) => { const x = 150 + i * 62, on = i < Math.round(f * 6); return `<g opacity="${on ? 1 : .15}">${box3(x, 108, 54, 14, 12, 'yel')}<rect x="${x + 6}" y="122" width="10" height="26" fill="#a0622d"/><rect x="${x + 38}" y="122" width="10" height="26" fill="#a0622d"/></g>` }).join('')}<g transform="translate(120 98)"><rect x="-4" y="-20" width="40" height="30" rx="5" fill="#fff" ${OS}/><path d="M2 4L10 -4L20 -2L30 -14" stroke="#22c58b" stroke-width="3" fill="none" stroke-linecap="round"/></g>`,
+    `${box3(250, 128 - 20 - K * 11, 60, 20 + K * 11, 18, 'blue')}${wins(250, 128 - K * 11 - 14, 60, K * 11 + 10, 3, Math.max(K, 1) + 1, '#fff')}${box3(170, 100, 44, 28, 12, 'pur')}${box3(380, 88, 50, 40, 14, 'mint')}${K >= 8 ? `<path d="M280 20V-6" stroke="#1b2a5e" stroke-width="3"/><path d="M280 -6l24 8-24 8z" fill="#ffd23f" ${OS}/>${[[210, 40, '#ff5d6c'], [340, 30, '#ffd23f'], [440, 50, '#5cc8ff'], [150, 60, '#8b5cf6']].map(([x, y, col]) => `<g stroke="${col}" stroke-width="3" stroke-linecap="round">${Array.from({ length: 8 }, (_, i) => `<path d="M${x} ${y}l${Math.cos(i * .785) * 16} ${Math.sin(i * .785) * 16}"/>`).join('')}</g>`).join('')}` : ''}`
+  ][n - 1]
+  return `<svg class="scene" viewBox="${mob ? '0 0 560 190' : '-120 0 800 190'}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe6ff"/><stop offset="1" stop-color="#e3fff3"/></linearGradient></defs><rect x="-120" width="800" height="190" fill="url(#${id})"/><g fill="#fff" opacity=".9"><ellipse cx="60" cy="30" rx="34" ry="11"/><ellipse cx="80" cy="24" rx="20" ry="12"/><ellipse cx="400" cy="22" rx="30" ry="10"/><ellipse cx="420" cy="16" rx="18" ry="11"/></g><rect x="-120" y="140" width="800" height="50" fill="url(#gGrass)"/><rect x="-120" y="140" width="800" height="6" fill="#fff" opacity=".5"/><g id="stu" transform="translate(12 44) scale(.76)">${guideG(mood)}</g>${FG}</svg>`
+}
+
+/* ---------- generator soal ---------- */
+const mkMC = o => ({ type: 'mc', ...o }), mkNum = o => ({ type: 'num', ...o })
+const pairS = (a, b) => `(${ang(a)}, ${ang(b)})`
+const ptsOn = (m, c, xs) => xs.map(x => ({ x, y: m * x + c }))
+const dec = v => String(Math.round(v * 100) / 100).replace('.', ',').replace('-', '−')
+const eqD = (m, c) => `y = ${m === 0 ? '' : (m === 1 ? '' : m === -1 ? '−' : dec(m)) + 'x'}${c === 0 ? (m === 0 ? '0' : '') : m === 0 ? dec(c) : c > 0 ? ' + ' + dec(c) : ' − ' + dec(-c)}`
+const SL = [[1, 1], [2, 1], [3, 1], [-1, 1], [-2, 1], [-3, 1], [1, 2], [-1, 2], [3, 2], [-3, 2], [2, 3], [-2, 3]] // [dy,dx]
+const twoPts = () => { for (;;) { const [dy, dx] = pick(SL), x1 = rnd(-5, 5), y1 = rnd(-5, 5), x2 = x1 + dx * pick([1, 2]), y2 = y1 + dy * (x2 - x1) / dx; if (Math.abs(x2) <= 5 && Math.abs(y2) <= 5 && Number.isInteger(y2) && x2 !== x1) return { x1, y1, x2, y2, dy: (y2 - y1), dx: (x2 - x1) } } }
+const eqOpts = (m, c) => { const set = [[m, c], [-m, c], [m, -c], [m, c + pick([1, -1, 2, -2])]], seen = new Set(), out = []; for (const [a, b] of set) { const t = eq(a, 1, b); if (!seen.has(t)) { seen.add(t); out.push({ t, v: [a, 1, b], ok: out.length === 0 }) } } while (out.length < 4) { const b = c + rnd(-4, 4), t = eq(m, 1, b); if (!seen.has(t)) { seen.add(t); out.push({ t, v: [m, 1, b], ok: false }) } } return shuffle(out) }
+
+
+/* tambahan: bentuk umum dan garis sejajar sumbu */
+const gGeneral = () => { const q = pick([1, 2, 3]), t = pick([1, 2, 3, 4]), k = pick([-4, -3, -2, -1, 1, 2, 3, 4]), p = q * t, m = -t, r = q * k
+  const txt = `${p}x + ${q === 1 ? '' : q}y ${r > 0 ? '−' : '+'} ${Math.abs(r)} = 0`
+  return mkMC({ tag: 'Bentuk umum', text: `Jalan lurus dinyatakan oleh <b>${txt}</b>. Bentuk y = mx + c dari persamaan itu adalah ...`, opts: eqOpts(m, k), hint: 'Pindahkan suku x dan konstanta ke ruas kanan, lalu bagi kedua ruas dengan koefisien y.', exp: `${q === 1 ? '' : q}y = ${m === -1 ? '−' : ang(-p)}x ${r > 0 ? '+' : '−'} ${Math.abs(r)}${q === 1 ? '' : `, bagi ${q}`}. Hasilnya <b>${eq(m, 1, k)}</b>, jadi gradien ${ang(m)} dan titik potong sumbu-y ${ang(k)}.` }) }
+const gAxis = () => { const v = Math.random() < .5, k = pick([-4, -3, -2, 2, 3, 4, 5]), L = v ? `x = ${ang(k)}` : `y = ${ang(k)}`
+  const good = v ? 'Sejajar sumbu-y, gradien tidak terdefinisi' : 'Sejajar sumbu-x, gradien 0'
+  const all = ['Sejajar sumbu-y, gradien tidak terdefinisi', 'Sejajar sumbu-x, gradien 0', 'Sejajar sumbu-y, gradien 0', 'Sejajar sumbu-x, gradien tidak terdefinisi']
+  return mkMC({ tag: 'Garis sejajar sumbu', text: `Sebuah jalan lurus memiliki persamaan <b>${L}</b>. Pernyataan yang benar tentang jalan itu adalah ...`, opts: shuffle(all).map(t => ({ t, ok: t === good })), hint: v ? 'Semua titik pada garis ini memiliki x yang sama, jadi garis tegak lurus sumbu-x (berdiri tegak).' : 'Semua titik pada garis ini memiliki y yang sama, jadi garis mendatar.', exp: v ? `Pada ${L} semua titik berabsis ${ang(k)}, garis berdiri tegak sejajar sumbu-y. Perubahan x = 0, sehingga m = Δy/0 <b>tidak terdefinisi</b>.` : `Pada ${L} semua titik berordinat ${ang(k)}, garis mendatar sejajar sumbu-x. Perubahan y = 0, sehingga m = <b>0</b>.` }) }
+/* Area 1: Coordinate Park */
+const gReadPt = () => { let x, y; do { x = rnd(-5, 5); y = rnd(-5, 5) } while (!x || !y || Math.abs(x) === Math.abs(y))
+  return mkMC({ tag: 'Baca koordinat', fig: plane({ pts: [{ x, y, l: 'A' }] }), text: 'Titik <b>A</b> adalah lokasi taman bermain. Berapa koordinat titik A?', opts: shuffle([[x, y], [y, x], [-x, y], [x, -y]].map(([a, b], i) => ({ t: pairS(a, b), ok: i === 0 }))), hint: 'Mulai dari titik asal: geser ke kanan/kiri sebanyak x, lalu naik/turun sebanyak y. Koordinat ditulis (x, y).', exp: `Dari titik asal, A berada ${Math.abs(x)} satuan ke ${x > 0 ? 'kanan' : 'kiri'} dan ${Math.abs(y)} satuan ${y > 0 ? 'ke atas' : 'ke bawah'}. Jadi A = <b>${pairS(x, y)}</b>.` }) }
+const gPlot = () => { const x = rnd(-5, 5), y = rnd(-5, 5)
+  return { type: 'plot', tag: 'Letakkan titik', text: `Tanam sebuah pohon di titik <b>${pairS(x, y)}</b>. Ketuk atau seret penanda ke titik itu, lalu tekan Pasang.`, plane: {}, t: { x, y }, hint: `Geser ${Math.abs(x)} satuan ${x >= 0 ? 'ke kanan' : 'ke kiri'} dari titik asal, lalu ${Math.abs(y)} satuan ${y >= 0 ? 'ke atas' : 'ke bawah'}.`, exp: `Titik ${pairS(x, y)} berada ${x === 0 ? 'pada sumbu-y' : Math.abs(x) + ' satuan ' + (x > 0 ? 'di kanan' : 'di kiri') + ' sumbu-y'} dan ${y === 0 ? 'pada sumbu-x' : Math.abs(y) + ' satuan ' + (y > 0 ? 'di atas' : 'di bawah') + ' sumbu-x'}.` } }
+const gQuad = () => { let x, y; do { x = rnd(-9, 9); y = rnd(-9, 9) } while (!x || !y)
+  const q = x > 0 && y > 0 ? 0 : x < 0 && y > 0 ? 1 : x < 0 && y < 0 ? 2 : 3, N = ['I', 'II', 'III', 'IV']
+  return mkMC({ tag: 'Kuadran', text: `Titik <b>P${pairS(x, y)}</b> terletak di ...`, opts: N.map((n, i) => ({ t: 'Kuadran ' + n, ok: i === q })), hint: 'Kuadran I (+,+), II (−,+), III (−,−), IV (+,−). Lihat tanda x dan y.', exp: `x ${x > 0 ? 'positif' : 'negatif'} dan y ${y > 0 ? 'positif' : 'negatif'}, sehingga P berada di <b>kuadran ${N[q]}</b>.` }) }
+const gReflect = () => { const a = pick([-4, -3, -2, 2, 3, 4]), b = pick([-4, -3, -2, 2, 3, 4]), m = rnd(0, 2), nm = ['sumbu-x', 'sumbu-y', 'titik asal O(0, 0)'][m], t = [{ x: a, y: -b }, { x: -a, y: b }, { x: -a, y: -b }][m]
+  return { type: 'plot', tag: 'Pencerminan', text: `Titik <b>A${pairS(a, b)}</b> dicerminkan terhadap <b>${nm}</b>. Letakkan titik bayangannya A'.`, plane: { pts: [{ x: a, y: b, l: 'A', col: '#8b5cf6' }] }, t, hint: m === 0 ? 'Pencerminan terhadap sumbu-x: x tetap, y berubah tanda.' : m === 1 ? 'Pencerminan terhadap sumbu-y: y tetap, x berubah tanda.' : 'Pencerminan terhadap titik asal: x dan y sama-sama berubah tanda.', exp: `Bayangan A terhadap ${nm} adalah A'${pairS(t.x, t.y)}.` } }
+const gRect = () => { let a, c, b, d; do { a = rnd(-5, 5); c = rnd(-5, 5) } while (a === c); do { b = rnd(-5, 5); d = rnd(-5, 5) } while (b === d)
+  return { type: 'plot', tag: 'Lahan persegi panjang', text: `Tiga sudut lahan taman berbentuk persegi panjang ABCD adalah <b>A${pairS(a, b)}</b>, <b>B${pairS(c, b)}</b>, dan <b>C${pairS(c, d)}</b>. Letakkan titik <b>D</b>.`, plane: { pts: [{ x: a, y: b, l: 'A', col: '#8b5cf6' }, { x: c, y: b, l: 'B', col: '#8b5cf6' }, { x: c, y: d, l: 'C', col: '#8b5cf6' }] }, t: { x: a, y: d }, hint: 'Pada persegi panjang yang sisinya sejajar sumbu, D berada satu garis vertikal dengan A dan satu garis horizontal dengan C.', exp: `D sejajar A (x = ${ang(a)}) dan sejajar C (y = ${ang(d)}), sehingga D = <b>${pairS(a, d)}</b>.` } }
+
+/* Area 2: Gradient Hill */
+const gSlopeGraph = () => { const p = twoPts(), m = p.dy / p.dx, c = p.y1 - m * p.x1
+  return mkNum({ tag: 'Gradien dari grafik', frac: true, fig: plane({ lines: [{ m, c }], pts: [{ x: p.x1, y: p.y1, l: 'P' }, { x: p.x2, y: p.y2, l: 'Q' }] }), text: 'Jalan di bukit digambarkan oleh garis di atas dan melalui titik P dan Q. Berapa gradien jalan tersebut?', ans: m, hint: 'Gradien = naik ÷ geser mendatar. Hitung selisih y dan selisih x antara P dan Q.', exp: `P${pairS(p.x1, p.y1)}, Q${pairS(p.x2, p.y2)}: m = (${ang(p.y2)} − ${ang(p.y1)}) ÷ (${ang(p.x2)} − ${ang(p.x1)}) = ${ang(p.dy)}/${ang(p.dx)} = <b>${fr(p.dy, p.dx)}</b>.`, unit: '' }) }
+const gSlope2Pts = () => { const p = twoPts(), m = p.dy / p.dx
+  return mkNum({ tag: 'Gradien dua titik', frac: true, text: `Sebuah jalan melalui titik <b>A${pairS(p.x1, p.y1)}</b> dan <b>B${pairS(p.x2, p.y2)}</b>. Tentukan gradien garis AB.`, ans: m, hint: 'm = (y₂ − y₁) ÷ (x₂ − x₁). Jaga urutan: kurangi titik kedua dengan titik pertama pada x dan y.', exp: `m = (${ang(p.y2)} − ${ang(p.y1)}) ÷ (${ang(p.x2)} − ${ang(p.x1)}) = ${ang(p.dy)}/${ang(p.dx)} = <b>${fr(p.dy, p.dx)}</b>.`, unit: '' }) }
+const gSlideSlope = () => { const m = pick([-2, -1.5, -1, -.5, .5, 1, 1.5, 2]), a = Math.abs(m) > 1.5 ? 2 : pick([2, 4]), b = m * a
+  return { type: 'slide', tag: 'Atur tanjakan', text: `Atur slider gradien agar jalan dari titik asal <b>O</b> tepat melewati titik <b>R${pairS(a, b)}</b>.`, r: 6, pts: [{ x: 0, y: 0, l: 'O', col: '#8b5cf6' }, { x: a, y: b, l: 'R' }], sl: [{ k: 'm', min: -3, max: 3, step: .5, v: 0, lab: 'm' }], c0: 0, t: { m, c: 0 }, hint: 'Gradien = y ÷ x untuk titik R, karena garis melalui titik asal.', exp: `m = ${ang(b)} ÷ ${a} = <b>${dec(m)}</b>.` } }
+const gMatchSlope = () => { const ms = shuffle([[-3, 1], [-2, 1], [-1, 1], [-1, 2], [1, 2], [1, 1], [2, 1], [3, 1]]).slice(0, 4), cs = ms.map(() => pick([-1, 0, 1, 2]))
+  const left = ms.map(([n, d], i) => plane({ r: 4, s: 30, mini: true, lines: [{ m: n / d, c: cs[i] }], label: 'Grafik garis' })), order = shuffle([0, 1, 2, 3]), right = order.map(i => `m = ${fr(ms[i][0], ms[i][1])}`)
+  return { type: 'match', tag: 'Cocokkan gradien', text: 'Pasangkan setiap grafik jalan dengan gradiennya. Ketuk grafik, lalu ketuk gradien yang cocok.', left, right, pair: [0, 1, 2, 3].map(i => order.indexOf(i)), hint: 'Garis naik ke kanan berarti gradien positif; turun ke kanan berarti negatif. Makin curam, makin besar nilai mutlaknya.', exp: 'Gradien positif untuk garis naik, negatif untuk garis turun, dan makin curam garisnya makin besar nilai mutlak gradiennya.' } }
+const gParPerp = () => { const v = rnd(0, 2)
+  if (v === 2) { const p = rnd(1, 5), q = rnd(1, 4), r = rnd(1, 9), sg = pick([1, -1]), s = sg > 0 ? '+' : '−'
+    return mkNum({ tag: 'Gradien dari persamaan', frac: true, text: `Tentukan gradien garis <b>${p}x ${s} ${q}y = ${r}</b>.`, ans: -p / (sg * q), hint: 'Ubah ke bentuk y = mx + c: pindahkan suku x ke ruas kanan, lalu bagi koefisien y.', exp: `${sg * q === 1 ? '' : sg * q}y = ${r} − ${p}x, lalu bagi dengan ${ang(sg * q)}. Koefisien x menjadi m = <b>${fr(-p, sg * q)}</b>.`, unit: '' }) }
+  const b = pick([1, 2, 3]), a = pick([-3, -2, -1, 1, 2, 3]), g = gcd(a, b), n = a / g, d = b / g
+  if (v === 0) return mkNum({ tag: 'Garis sejajar', frac: true, text: `Jalan <b>g</b> memiliki gradien <b>${fr(n, d)}</b>. Berapa gradien jalan yang <b>sejajar</b> dengan g?`, ans: n / d, hint: 'Dua garis sejajar memiliki gradien yang sama.', exp: `Garis sejajar punya gradien sama, yaitu <b>${fr(n, d)}</b>.`, unit: '' })
+  return mkNum({ tag: 'Garis tegak lurus', frac: true, text: `Jalan <b>g</b> memiliki gradien <b>${fr(n, d)}</b>. Berapa gradien jalan yang <b>tegak lurus</b> dengan g?`, ans: -d / n, hint: 'Pada dua garis tegak lurus, m₁ × m₂ = −1. Balik pecahannya dan ubah tandanya.', exp: `m₁ × m₂ = −1, sehingga m₂ = −1 ÷ (${fr(n, d)}) = <b>${fr(-d, n)}</b>.`, unit: '' }) }
+
+/* Area 3: Equation Center */
+const gTiles = () => { const m = pick([-4, -3, -2, 2, 3, 4]), c = pick([-6, -5, -4, -3, -2, 2, 3, 4, 5, 6]), sg = c < 0 ? '−' : '+', ac = Math.abs(c)
+  const need = [ang(m), sg, String(ac)], bank = shuffle([...need, ...new Set([ang(-m), String(ac + 1), '+', '−'])].filter((x, i, a) => i < 3 || !need.includes(x)))
+  return { type: 'tiles', tag: 'Susun persamaan', text: `Bangun jalan lurus dengan gradien <b>${ang(m)}</b> yang memotong sumbu-y di titik <b>(0, ${ang(c)})</b>. Susun persamaannya.`, parts: ['y =', '#', 'x', '#', '#'], expect: [ang(m), sg, String(ac)], bank, hint: 'Bentuk y = mx + c: m adalah gradien dan c adalah titik potong sumbu-y.', exp: `y = mx + c dengan m = ${ang(m)} dan c = ${ang(c)}, sehingga <b>${eq(m, 1, c)}</b>.` } }
+const gGradPt = () => { const m = pick([-3, -2, 2, 3]), x1 = pick([-4, -3, -2, -1, 1, 2, 3, 4]), y1 = rnd(-6, 6), c = y1 - m * x1
+  if (!c) return gGradPt()
+  const set = [c, -c, y1 + m * x1, c + pick([1, -1])], seen = [], opts = []; for (const k of set) { const t = eq(m, 1, k); if (!seen.includes(t)) { seen.push(t); opts.push({ t, v: [m, 1, k], ok: opts.length === 0 }) } } while (opts.length < 4) { const k = c + rnd(-5, 5), t = eq(m, 1, k); if (!seen.includes(t)) { seen.push(t); opts.push({ t, v: [m, 1, k], ok: false }) } }
+  return mkMC({ tag: 'Gradien + titik', text: `Sebuah jalan bergradien <b>${ang(m)}</b> melalui titik <b>(${ang(x1)}, ${ang(y1)})</b>. Persamaan garisnya adalah ...`, opts: shuffle(opts), hint: 'Pakai y − y₁ = m(x − x₁), lalu ubah ke bentuk y = mx + c.', exp: `y − ${ang(y1)} = ${ang(m)}(x − ${ang(x1)}) → y = ${eq(m, 1, c).slice(4)}. Jadi <b>${eq(m, 1, c)}</b>.` }) }
+const gTwoPtsEq = () => { const m = pick([-3, -2, -1, 1, 2, 3]), c = pick([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]), x1 = rnd(-3, 0), x2 = x1 + rnd(1, 3), y1 = m * x1 + c, y2 = m * x2 + c
+  return mkMC({ tag: 'Persamaan dari dua titik', text: `Jalan lurus melalui titik <b>(${ang(x1)}, ${ang(y1)})</b> dan <b>(${ang(x2)}, ${ang(y2)})</b>. Persamaan garisnya adalah ...`, opts: eqOpts(m, c), hint: 'Cari gradien dulu: m = (y₂ − y₁) ÷ (x₂ − x₁). Lalu masukkan salah satu titik ke y = mx + c untuk mencari c.', exp: `m = (${ang(y2)} − ${ang(y1)}) ÷ (${ang(x2)} − ${ang(x1)}) = ${ang(m)}. Dari titik (${ang(x1)}, ${ang(y1)}): c = ${ang(y1)} − (${ang(m)})(${ang(x1)}) = ${ang(c)}. Jadi <b>${eq(m, 1, c)}</b>.` }) }
+const gSlideEq = () => { const m = pick([-2, -1.5, -1, -.5, .5, 1, 1.5, 2]), c = pick([-3, -2, -1, 0, 1, 2, 3]), x1 = pick([-2, 0]), x2 = 2
+  return { type: 'slide', tag: 'Atur gradien dan konstanta', text: `Atur slider <b>m</b> dan <b>c</b> sehingga jalan melewati titik <b>P</b> dan <b>Q</b>.`, r: 8, pts: [{ x: x1, y: m * x1 + c, l: 'P' }, { x: x2, y: m * x2 + c, l: 'Q' }], sl: [{ k: 'm', min: -3, max: 3, step: .5, v: 0, lab: 'm' }, { k: 'c', min: -6, max: 6, step: 1, v: 0, lab: 'c' }], c0: 0, t: { m, c }, hint: 'c adalah titik potong sumbu-y (geser garis naik atau turun), m adalah kemiringannya. Atur m dulu sampai arah garis cocok, lalu c.', exp: `Gradien antara P dan Q = ${dec(m)}, dan titik potong sumbu-y = ${ang(c)}. Persamaan: <b>${eqD(m, c)}</b>.` } }
+const gParallelEq = () => { if (Math.random() < .5) { const m0 = pick([-3, -2, -1, 1, 2, 3]), c0 = pick([-4, -2, 1, 3, 5]), x1 = pick([-3, -2, 1, 2, 3]), y1 = rnd(-5, 5), c = y1 - m0 * x1
+    if (c === c0 || !c) return gParallelEq()
+    const set = [[m0, c], [m0, c0], [-m0, c], [m0, -c]], seen = [], opts = []; for (const [a, b] of set) { const t = eq(a, 1, b); if (!seen.includes(t)) { seen.push(t); opts.push({ t, v: [a, 1, b], ok: opts.length === 0 }) } } if (opts.length < 4) return gParallelEq()
+    return mkMC({ tag: 'Garis sejajar', text: `Jalan baru harus <b>sejajar</b> dengan jalan <b>${eq(m0, 1, c0)}</b> dan melalui titik <b>(${ang(x1)}, ${ang(y1)})</b>. Persamaannya adalah ...`, opts: shuffle(opts), hint: 'Garis sejajar punya gradien sama. Masukkan titik yang diketahui untuk mencari c.', exp: `Gradien sama: m = ${ang(m0)}. Dari titik (${ang(x1)}, ${ang(y1)}): c = ${ang(y1)} − (${ang(m0)})(${ang(x1)}) = ${ang(c)}. Jadi <b>${eq(m0, 1, c)}</b>.` }) }
+  const k = pick([-3, -2, 2, 3]), c0 = pick([-3, -1, 2, 4]), x1 = k * pick([-2, -1, 1, 2]), y1 = rnd(-4, 4), c = y1 + x1 / k
+  const set = [[-1, k, c], [1, k, c], [k, 1, c], [-k, 1, c]], opts = set.map(([n, d, b], i) => ({ t: eq(n, d, b), v: [n, d, b], ok: i === 0 }))
+  if (new Set(opts.map(o => o.t)).size < 4) return gParallelEq()
+  return mkMC({ tag: 'Garis tegak lurus', text: `Jalan baru harus <b>tegak lurus</b> dengan jalan <b>${eq(k, 1, c0)}</b> dan melalui titik <b>(${ang(x1)}, ${ang(y1)})</b>. Persamaannya adalah ...`, opts: shuffle(opts), hint: 'Gradien garis tegak lurus adalah −1 ÷ m. Setelah itu cari c dengan memasukkan titik yang diketahui.', exp: `Gradien baru = −1/${ang(k)} = ${fr(-1, k)}. Dari titik (${ang(x1)}, ${ang(y1)}): c = ${ang(y1)} − (${fr(-1, k)})(${ang(x1)}) = ${ang(c)}. Jadi <b>${eq(-1, k, c)}</b>.` }) }
+
+/* Area 4: Graph Academy */
+const gDraw = () => { const half = Math.random() < .25, n = half ? pick([-1, 1]) : pick([-3, -2, -1, 1, 2, 3]), d = half ? 2 : 1, c = pick([-3, -2, -1, 0, 1, 2, 3]), m = n / d
+  return { type: 'plot2', tag: 'Gambar grafik', text: `Gambarlah grafik <b>${eq(n, d, c)}</b>. Ketuk <b>dua titik</b> yang dilalui garis itu, lalu tekan Gambar garis.`, plane: {}, line: { m, c }, hint: `Hitung dua titik: untuk x = 0 diperoleh y = ${ang(c)}. Ambil satu x lain${half ? ' (pilih x genap)' : ''} dan hitung y-nya.`, exp: `Contoh titik yang dilalui: (0, ${ang(c)})${half ? ` dan (2, ${ang(n + c)})` : ` dan (1, ${ang(m + c)})`}. Hubungkan keduanya menjadi garis lurus.` } }
+const gReadEq = () => { const m = pick([-3, -2, -1, 1, 2, 3]), c = pick([-4, -3, -2, -1, 1, 2, 3, 4])
+  return mkMC({ tag: 'Baca grafik', fig: plane({ lines: [{ m, c }], pts: [{ x: 0, y: c, l: `(0, ${ang(c)})` }] }), text: 'Jembatan lurus pada grafik di atas dinyatakan oleh persamaan ...', opts: eqOpts(m, c), hint: 'Lihat titik potong sumbu-y (itu nilai c), lalu hitung gradien dari kenaikan tiap 1 satuan ke kanan.', exp: `Memotong sumbu-y di ${ang(c)}, sehingga c = ${ang(c)}. Tiap 1 satuan ke kanan, y ${m > 0 ? 'naik' : 'turun'} ${Math.abs(m)}, sehingga m = ${ang(m)}. Persamaan: <b>${eq(m, 1, c)}</b>.` }) }
+const gIntercept = () => { const m = pick([-2, -1, 1, 2]), x0 = pick([-3, -2, -1, 1, 2, 3]), c = -m * x0, ys = Math.random() < .5
+  if (ys) { const c2 = pick([-4, -3, -2, 2, 3, 4]); return { type: 'plot', tag: 'Titik potong sumbu-y', text: `Garis <b>${eq(m, 1, c2)}</b> sudah digambar. Tandai titik potongnya dengan <b>sumbu-y</b>.`, plane: { lines: [{ m, c: c2 }] }, t: { x: 0, y: c2 }, hint: 'Di sumbu-y nilai x = 0. Masukkan x = 0 ke persamaan.', exp: `x = 0 → y = ${ang(c2)}. Titik potongnya <b>(0, ${ang(c2)})</b>.` } }
+  return { type: 'plot', tag: 'Titik potong sumbu-x', text: `Garis <b>${eq(m, 1, c)}</b> sudah digambar. Tandai titik potongnya dengan <b>sumbu-x</b>.`, plane: { lines: [{ m, c }] }, t: { x: x0, y: 0 }, hint: 'Di sumbu-x nilai y = 0. Selesaikan 0 = mx + c.', exp: `y = 0 → 0 = ${ang(m)}x ${c < 0 ? '−' : '+'} ${Math.abs(c)} → x = <b>${ang(x0)}</b>. Titik potongnya (${ang(x0)}, 0).` } }
+const gMatchEq = () => { const ms = shuffle([-2, -1, 1, 2, 3]).slice(0, 3), cs = [pick([-3, -2, -1]), pick([0, 1]), pick([2, 3])], L = ms.map((m, i) => ({ m, c: cs[i] })), order = shuffle([0, 1, 2])
+  return { type: 'match', tag: 'Cocokkan persamaan', text: 'Pasangkan grafik dengan persamaan garisnya. Ketuk grafik, lalu ketuk persamaan yang cocok.', left: L.map(l => plane({ r: 4, s: 30, mini: true, lines: [{ m: l.m, c: l.c }], label: 'Grafik garis' })), right: order.map(i => eq(L[i].m, 1, L[i].c)), pair: [0, 1, 2].map(i => order.indexOf(i)), hint: 'Periksa titik potong sumbu-y (nilai c) dan arah garis (tanda m).', exp: 'Titik potong sumbu-y memberi nilai c, sedangkan arah garis memberi tanda gradien m.' } }
+const gInterp = () => { const v = rnd(0, 3)
+  if (v === 3) { const a = pick([2000, 2500, 3000, 4000]), b = pick([3000, 5000, 7000, 10000]), opts = ['Biaya tiap kilometer', 'Biaya awal (saat jarak 0 km)', 'Total biaya perjalanan', 'Jarak perjalanan'], ok = pick([0, 1]), val = ok ? b : a
+    return mkMC({ tag: 'Interpretasi grafik', text: `Biaya taksi online dinyatakan <b>y = ${a}x + ${b}</b> (x = jarak dalam km, y = biaya dalam rupiah). Angka <b>${val}</b> pada persamaan itu menyatakan ...`, opts: opts.map((t, i) => ({ t, ok: i === ok })), hint: 'Angka di depan x adalah gradien (perubahan per satuan), sedangkan angka tanpa x adalah titik potong sumbu-y (nilai awal).', exp: ok ? `Saat x = 0 km, y = ${b}. Jadi ${b} adalah <b>biaya awal</b>.` : `Tiap bertambah 1 km, biaya naik ${a}. Jadi ${a} adalah <b>biaya tiap kilometer</b> (gradien).` }) }
+  if (v === 0) { const a = pick([2000, 2500, 3000, 4000]), b = pick([3000, 5000, 7000, 10000]), x = rnd(4, 12)
+    return mkNum({ tag: 'Interpretasi grafik', text: `Biaya taksi online mengikuti <b>y = ${a}x + ${b}</b> (x = jarak dalam km, y = biaya dalam rupiah). Berapa biaya untuk perjalanan <b>${x} km</b>?`, ans: a * x + b, unit: 'rupiah', hint: `Masukkan x = ${x} ke persamaan.`, exp: `y = ${a}(${x}) + ${b} = ${a * x} + ${b} = <b>${rp(a * x + b)}</b>.` }) }
+  if (v === 1) { const b = pick([20000, 30000, 50000]), a = pick([5000, 10000, 15000]), x = rnd(3, 10)
+    return mkNum({ tag: 'Interpretasi grafik', text: `Tabungan Raka mengikuti <b>y = ${a}x + ${b}</b> (x = banyak minggu, y = saldo dalam rupiah). Berapa saldo setelah <b>${x} minggu</b>?`, ans: a * x + b, unit: 'rupiah', hint: `Masukkan x = ${x} ke persamaan.`, exp: `y = ${a}(${x}) + ${b} = <b>${rp(a * x + b)}</b>.` }) }
+  const b = pick([100, 150, 200]), a = pick([5, 10, 12]), x = rnd(3, 9)
+  return mkNum({ tag: 'Interpretasi grafik', text: `Air dalam tangki berkurang mengikuti <b>y = ${b} − ${a}x</b> (x = menit, y = liter). Berapa liter air tersisa setelah <b>${x} menit</b>?`, ans: b - a * x, unit: 'liter', hint: `Masukkan x = ${x} ke persamaan. Gradien negatif berarti air berkurang.`, exp: `y = ${b} − ${a}(${x}) = ${b} − ${a * x} = <b>${b - a * x} liter</b>.` }) }
+const gWord = () => { const v = rnd(0, 2), a = rnd(3, 12), b = pick([5, 10, 15, 20, 30]), t1 = rnd(2, 4), t2 = t1 + rnd(2, 4), t3 = t2 + rnd(2, 5), y1 = a * t1 + b, y2 = a * t2 + b, ans = a * t3 + b
+  const U = ['liter', 'ribu rupiah', 'cm'][v], tx = [`Sebuah bak diisi air dengan debit tetap. Setelah <b>${t1} menit</b> volume air <b>${y1} liter</b>, dan setelah <b>${t2} menit</b> menjadi <b>${y2} liter</b>. Berapa liter volume air setelah <b>${t3} menit</b>?`, `Biaya sewa sepeda motor naik tetap tiap hari. Untuk <b>${t1} hari</b> biayanya <b>${y1} ribu rupiah</b>, dan untuk <b>${t2} hari</b> biayanya <b>${y2} ribu rupiah</b>. Berapa ribu rupiah biaya untuk <b>${t3} hari</b>?`, `Tinggi tanaman bertambah tetap tiap hari. Setelah <b>${t1} hari</b> tingginya <b>${y1} cm</b>, dan setelah <b>${t2} hari</b> menjadi <b>${y2} cm</b>. Berapa cm tinggi tanaman setelah <b>${t3} hari</b>?`][v]
+  return mkNum({ tag: 'Soal cerita garis lurus', text: tx, ans, unit: U, hint: 'Cari gradien dari dua data, lalu cari c, kemudian hitung nilai y untuk x yang ditanyakan.', exp: `m = (${y2} − ${y1}) ÷ (${t2} − ${t1}) = ${a}. c = ${y1} − ${a}(${t1}) = ${b}. Model: y = ${a}x + ${b}. Untuk x = ${t3}: y = <b>${ans} ${U}</b>.` }) }
+
+/* ---------- area dan lencana ---------- */
+const AREAS = [null,
+  { n: 1, t: 'Coordinate Park', d: 'Bidang Kartesius: baca, letakkan, dan cerminkan titik.', mech: 'Bidang koordinat interaktif · seret penanda', need: 5, lives: 3, pts: 100, time: 0, gens: [gReadPt, gPlot, gQuad, gReflect, gRect], say: 'Halo, aku Lina! Taman kota ini butuh koordinat yang tepat untuk menaruh pohon dan lampu. Ayo kita mulai!', obj: 'Tujuan: selesaikan 5 tantangan koordinat. Tiap jawaban benar menanam pohon baru di taman.', dif: 1 },
+  { n: 2, t: 'Gradient Hill', d: 'Gradien dari grafik dan dua titik, garis sejajar dan tegak lurus.', mech: 'Slider kemiringan · mencocokkan grafik', need: 6, lives: 3, pts: 100, time: 0, gens: [gSlopeGraph, gSlope2Pts, gSlideSlope, gMatchSlope, gParPerp, gAxis], say: 'Bukit ini butuh jalan yang kemiringannya pas. Gradien adalah kuncinya!', obj: 'Tujuan: atur kemiringan jalan dan bangun rumah di sepanjang tanjakan bukit.', dif: 2 },
+  { n: 3, t: 'Equation Center', d: 'Menyusun persamaan garis dari gradien, titik, atau dua titik.', mech: 'Menyusun persamaan · slider m dan c', need: 6, lives: 3, pts: 120, time: 0, gens: [gTiles, gGradPt, gTwoPtsEq, gSlideEq, gParallelEq, gGeneral], say: 'Gedung Equation Center naik satu lantai setiap persamaan yang kamu susun dengan benar.', obj: 'Tujuan: susun dan tentukan persamaan garis sampai menara selesai dibangun.', dif: 3 },
+  { n: 4, t: 'Graph Academy', d: 'Menggambar, membaca, dan menafsirkan grafik garis lurus.', mech: 'Menggambar grafik · mencocokkan · membaca grafik', need: 5, lives: 3, pts: 120, time: 0, gens: [gDraw, gReadEq, gIntercept, gMatchEq, gInterp], say: 'Di Graph Academy kita membangun jembatan dari grafik. Setiap grafik yang benar menambah satu bagian jembatan.', obj: 'Tujuan: gambar dan baca grafik untuk menyelesaikan jembatan di atas sungai.', dif: 4 },
+  { n: 5, t: 'Line Challenge', d: 'Tantangan akhir: gabungan semua materi dan soal sehari-hari.', mech: 'Campuran semua mekanisme · ada batas waktu', need: 8, lives: 3, pts: 150, time: 420, gens: [gSlope2Pts, gIntercept, gTwoPtsEq, gWord, gParPerp, gSlideEq, gInterp, gGeneral], boss: true, say: 'Ini tantangan terakhir! Selesaikan semuanya dan gedung pencakar langit Line City akan berdiri.', obj: 'Tujuan: jawab 7 tantangan campuran sebelum waktu habis.', dif: 5 }]
+const BADGES = [
+  { n: 'Penanam Koordinat', d: 'Selesaikan Coordinate Park', i: medal(W('1'), 'gMint'), ok: s => !!s.best[1] }, { n: 'Pendaki Gradien', d: 'Selesaikan Gradient Hill', i: medal(W('2'), 'gBlue'), ok: s => !!s.best[2] },
+  { n: 'Arsitek Persamaan', d: 'Selesaikan Equation Center', i: medal(W('3'), 'gPur'), ok: s => !!s.best[3] }, { n: 'Pelukis Grafik', d: 'Selesaikan Graph Academy', i: medal(W('4'), 'gPink'), ok: s => !!s.best[4] },
+  { n: 'Walikota Line City', d: 'Selesaikan Line Challenge', i: medal(W('5'), 'gYel'), ok: s => !!s.best[5] }, { n: 'Bintang Tiga', d: 'Raih 3 bintang di satu area', i: medal(`<path d="M32 28l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#fff"/>`), ok: s => Object.values(s.best).some(b => b.stars === 3) },
+  { n: 'Kolektor Bintang', d: 'Kumpulkan 10 bintang', i: medal(`<path d="M32 26l4 8 9 1-6 6 2 9-8-4-8 4 2-9-6-6 9-1z" fill="#fff"/>`, 'gPur'), ok: (s, T) => T.st >= 10 },
+  { n: 'Pemain Mini', d: 'Mainkan mini game', i: medal(W('🎮'), 'gPink'), ok: s => !!(s.mini.m1 || s.mini.m2) }, { n: 'Kaya Koin', d: 'Kumpulkan 100 koin', i: medal(W('$'), 'gYel'), ok: () => coinsOf() >= 100 },
+  { n: 'Tanpa Cela', d: '3 bintang di semua area', i: medal(W('★'), 'gBlue'), ok: (s, T) => T.st === 15 }, { n: 'Level 5', d: 'Capai level pemain 5', i: medal(W('5'), 'gPur'), ok: () => lvlOf() >= 5 }]
+
+/* ---------- mesin tantangan ---------- */
+const parseNum = s => { s = String(s).replace(/\s/g, '').replace(/−/g, '-'); if (/^-?\d+\/-?\d+$/.test(s)) { const [a, b] = s.split('/').map(Number); return b ? a / b : NaN } return parseFloat(s.replace(/\.(?=\d{3}(\D|$))/g, '').replace(',', '.')) }
+const qcard = '<div class="qcard"><div class="qtop"><span class="qtag" id="qTag"></span><span class="sm" id="qTry"></span></div><div class="qfig" id="qFig"></div><div class="qtext" id="qText"></div><div id="qBody"></div><div class="fb" id="qFb" hidden></div><div class="qnext"><button class="btn" id="qNext" type="button" hidden>Lanjut</button></div></div>'
+function ask(q, run) {
+  return new Promise(resolve => {
+    let tries = 0, done = false, locked = false; run.q = q
+    const fin = r => { if (done) return; done = true; locked = true; run.cancel = null; resolve(r) }
+    run.cancel = () => fin({ ok: false, dead: true })
+    const fb = $('#qFb'), nx = $('#qNext'), body = $('#qBody')
+    $('#qTag').textContent = q.tag; $('#qFig').innerHTML = q.fig || ''; $('#qText').innerHTML = q.text
+    const finish = (ok, msg, dead) => { locked = true; fb.hidden = false; fb.className = 'fb ' + (ok ? 'ok' : 'no'); fb.innerHTML = msg; nx.hidden = false; nx.onclick = () => fin({ ok, tries, dead }); nx.focus(); body.querySelectorAll('button,input').forEach(x => x.disabled = true) }
+    const wrong = (el, soft) => {
+      sfx.no(); react('sad'); S.tot.no++; if (el) el.classList.add('no'); run.onWrong()
+      if (run.lives <= 0) return finish(false, `<b>Nyawa habis.</b> ${q.exp}`, true)
+      if (tries >= 2) return finish(false, `<b>Belum tepat.</b> ${q.exp}`)
+      fb.hidden = false; fb.className = 'fb no'; fb.innerHTML = `<b>Belum tepat.</b> Petunjuk: ${q.hint}`; $('#qTry').textContent = 'Kesempatan terakhir'
+      if (el) el.disabled = true
+    }
+    const verdict = (good, el) => { tries++; if (good) { sfx.ok(); react('cheer'); S.tot.ok++; if (el) el.classList.add('ok'); return finish(true, `<b>Benar!</b> ${q.exp}`) } wrong(el); if (!done && q.type === 'num') { const i = $('#qIn'); i.value = ''; i.focus() } }
+    const t = q.type
+    if (t === 'mc') {
+      body.innerHTML = `<div class="opts ${q.opts.every(x => x.t.length < 14) ? 'two' : ''}">${q.opts.map((x, i) => `<button class="opt" data-i="${i}" type="button">${x.t}</button>`).join('')}</div>`
+      $$('#qBody .opt').forEach(b => b.onclick = () => verdict(!!q.opts[+b.dataset.i].ok, b))
+    } else if (t === 'num') {
+      body.innerHTML = `<form class="inrow" id="qForm"><input id="qIn" inputmode="text" autocomplete="off" aria-label="Jawaban" placeholder="${q.frac ? 'contoh: 3/2 atau −1,5' : 'Jawabanmu'}"><span class="u">${q.unit || ''}</span><button class="btn" type="submit">Cek</button></form>`
+      $('#qForm').onsubmit = e => { e.preventDefault(); const v = parseNum($('#qIn').value); if (isNaN(v)) return; verdict(Math.abs(v - q.ans) < 1e-6) }
+      setTimeout(() => { const f = $('#qIn'); f && f.focus({ preventScroll: true }) }, 30)
+    } else if (t === 'plot' || t === 'plot2') {
+      body.innerHTML = plane({ ...q.plane, act: true }) + `<div class="rd" id="rd">${t === 'plot' ? 'Ketuk atau seret untuk menaruh titik' : 'Ketuk dua titik pada bidang'}</div><div class="qnext" style="justify-content:center;margin-top:0"><button class="btn mt" id="bChk" type="button" disabled>${t === 'plot' ? 'Pasang titik' : 'Gambar garis'}</button></div>`
+      const svg = body.querySelector('svg'), r = +svg.dataset.r, s = +svg.dataset.s, h = (2 * r + 2) * s / 2; let cur = null, drag = false, pts = []
+      const draw = () => { let o = ''; if (t === 'plot2' && pts.length === 2 && pts[0].x !== pts[1].x) { const [a, b] = pts, m = (b.y - a.y) / (b.x - a.x), c = a.y - m * a.x, e = lineEnds(m, c, r, s); o += `<line x1="${e[0]}" y1="${e[1]}" x2="${e[2]}" y2="${e[3]}" stroke="#ff9f1c" stroke-width="4" stroke-linecap="round"/>` } for (const p of pts) o += `<circle cx="${h + p.x * s}" cy="${h - p.y * s}" r="8" fill="#ff9f1c" stroke="#fff" stroke-width="3"/>`; svg.querySelector('#mkg').innerHTML = o; $('#rd').textContent = pts.map(p => pairS(p.x, p.y)).join('  ·  ') || '—'; $('#bChk').disabled = t === 'plot' ? !cur : pts.length < 2 }
+      svg.addEventListener('pointerdown', e => { if (locked) return; sfx.tap(); const p = gridPt(svg, e); if (t === 'plot') { drag = true; try { svg.setPointerCapture(e.pointerId) } catch (x) {} cur = p; pts = [p] } else { if (pts.length >= 2) pts = []; pts.push(p) } draw() })
+      svg.addEventListener('pointermove', e => { if (drag && !locked) { const p = gridPt(svg, e); cur = p; pts = [p]; draw() } })
+      const up = () => drag = false; svg.addEventListener('pointerup', up); svg.addEventListener('pointercancel', up)
+      $('#bChk').onclick = () => { if (locked) return; if (t === 'plot') verdict(cur.x === q.t.x && cur.y === q.t.y); else { const [a, b] = pts, ok = (a.x !== b.x || a.y !== b.y) && [a, b].every(p => Math.abs(p.y - (q.line.m * p.x + q.line.c)) < 1e-9); verdict(ok) } }
+    } else if (t === 'slide') {
+      const st = { m: 0, c: q.c0 || 0 }; q.sl.forEach(x => st[x.k] = x.v)
+      body.innerHTML = plane({ r: q.r, s: Math.floor(330 / (2 * q.r + 2)), pts: q.pts, live: { m: st.m, c: st.c } }) + `<div class="rd" id="rd">${eqD(st.m, st.c)}</div>` + q.sl.map(x => `<div class="sl"><label for="s_${x.k}">${x.lab}</label><input type="range" id="s_${x.k}" min="${x.min}" max="${x.max}" step="${x.step}" value="${x.v}"><output id="o_${x.k}">${dec(x.v)}</output></div>`).join('') + '<div class="qnext" style="justify-content:center"><button class="btn mt" id="bChk" type="button">Periksa</button></div>'
+      const svg = body.querySelector('svg')
+      q.sl.forEach(x => $('#s_' + x.k).oninput = e => { if (locked) return; st[x.k] = +e.target.value; $('#o_' + x.k).textContent = dec(st[x.k]); setLive(svg, st.m, st.c); $('#rd').textContent = eqD(st.m, st.c); sfx.tap() })
+      $('#bChk').onclick = () => { if (locked) return; verdict(Math.abs(st.m - q.t.m) < 1e-9 && Math.abs(st.c - q.t.c) < 1e-9) }
+    } else if (t === 'match') {
+      const n = q.left.length; let sel = null, got = 0, mist = 0
+      body.innerHTML = `<div class="mt2">${q.left.map((h, i) => `<button class="mi" data-l="${i}" type="button" aria-label="Grafik ${i + 1}">${h}</button><button class="mi" data-r="${i}" type="button">${q.right[i]}</button>`).join('')}</div>`
+      const L = i => body.querySelector(`[data-l="${i}"]`), Rr = i => body.querySelector(`[data-r="${i}"]`)
+      body.querySelectorAll('[data-l]').forEach(b => b.onclick = () => { if (locked || b.classList.contains('done')) return; sfx.tap(); body.querySelectorAll('[data-l]').forEach(x => x.classList.remove('sel')); sel = +b.dataset.l; b.classList.add('sel') })
+      body.querySelectorAll('[data-r]').forEach(b => b.onclick = () => { if (locked || sel === null || b.classList.contains('done')) return; const j = +b.dataset.r
+        if (q.pair[sel] === j) { sfx.ok(); L(sel).classList.remove('sel'); L(sel).classList.add('done'); b.classList.add('done'); sel = null; if (++got === n) { tries = mist ? 2 : 1; S.tot.ok++; react('cheer'); finish(true, `<b>Semua cocok!</b> ${q.exp}`) } }
+        else { mist++; tries = 2; [L(sel), b].forEach(x => { x.classList.add('shk'); setTimeout(() => x.classList.remove('shk'), 320) }); L(sel).classList.remove('sel'); sel = null; sfx.no(); react('sad'); S.tot.no++; run.onWrong(); if (run.lives <= 0) return finish(false, `<b>Nyawa habis.</b> ${q.exp}`, true); fb.hidden = false; fb.className = 'fb no'; fb.innerHTML = `<b>Belum cocok.</b> Petunjuk: ${q.hint}` } })
+    } else if (t === 'tiles') {
+      const st = q.expect.map(() => -1); let si = 0
+      const parts = q.parts.map(p => p === '#' ? `<span class="slot" data-s="${si++}" role="button" tabindex="0" aria-label="Slot kosong"></span>` : `<span>${p}</span>`).join('')
+      body.innerHTML = `<div class="eqrow" id="eqr">${parts}</div><div class="bank" id="bnk"></div><div class="rd">Seret atau ketuk kartu ke kotak yang kosong. Ketuk kotak untuk mengosongkan.</div><div class="qnext" style="justify-content:center;margin-top:0"><button class="btn mt" id="bChk" type="button">Periksa</button></div>`
+      const draw = () => { body.querySelectorAll('.slot').forEach((el, i) => { el.textContent = st[i] < 0 ? '' : q.bank[st[i]]; el.setAttribute('aria-label', st[i] < 0 ? 'Slot kosong' : 'Slot berisi ' + q.bank[st[i]]) }); $('#bnk').innerHTML = q.bank.map((b, i) => st.includes(i) ? '' : `<button class="tl" data-i="${i}" type="button">${b}</button>`).join(''); bindBank() }
+      const place = (ti, s) => { if (s < 0) return; st[s] = ti; sfx.tap(); draw() }
+      const bindBank = () => body.querySelectorAll('.tl').forEach(b => b.onpointerdown = e => { if (locked) return; e.preventDefault(); const ti = +b.dataset.i, sx = e.clientX, sy = e.clientY; let gh = null
+        const mv = ev => { if (!gh && Math.hypot(ev.clientX - sx, ev.clientY - sy) > 8) { gh = b.cloneNode(true); gh.className = 'tl gh'; document.body.appendChild(gh) } if (gh) { gh.style.left = ev.clientX + 'px'; gh.style.top = ev.clientY + 'px'; body.querySelectorAll('.slot').forEach(sl => { const r = sl.getBoundingClientRect(); sl.classList.toggle('hv', ev.clientX > r.left && ev.clientX < r.right && ev.clientY > r.top && ev.clientY < r.bottom) }) } }
+        const up = ev => { window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); body.querySelectorAll('.slot').forEach(sl => sl.classList.remove('hv'))
+          if (gh) { gh.remove(); const sl = document.elementFromPoint(ev.clientX, ev.clientY); const el = sl && sl.closest && sl.closest('.slot'); if (el) place(ti, +el.dataset.s) } else place(ti, st.indexOf(-1)) }
+        window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up) })
+      body.querySelectorAll('.slot').forEach(el => { el.onclick = () => { if (locked) return; const i = +el.dataset.s; if (st[i] >= 0) { st[i] = -1; sfx.tap(); draw() } } })
+      $('#bChk').onclick = () => { if (locked || st.includes(-1)) return; verdict(st.every((ti, i) => q.bank[ti] === q.expect[i])) }
+      draw()
+    }
+  })
+}
+
+/* ---------- alur permainan di area ---------- */
+let R = null
+const stale = r => r !== R || r.over
+const fmt = s => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
+const say = (mood, html, st = '') => `<div class="say" ${st ? `style="${st}"` : ''}><div class="av" id="av">${headSVG(mood)}</div><div class="bub">${html}</div></div>`
+function hud() {
+  const r = R, L = r.L
+  $('#hud').innerHTML = `<button class="btn ghost sm" id="bBack" type="button">← Peta</button><div class="nm">Area ${L.n}: ${L.t}<small>${r.correct}/${L.need} selesai</small></div><span class="it" aria-label="Nyawa">${ic('heart').repeat(Math.max(r.lives, 0)) || '<small>0</small>'}</span><span class="it">${ic('coin')}${r.crystals}</span><span class="it">★ ${r.score}</span>${L.time ? `<span class="it tm${r.left <= 30 ? ' low' : ''}">${ic('clock')}${fmt(Math.max(r.left, 0))}</span>` : ''}`
+  $('#bBack').onclick = () => { if (confirm('Keluar dari area? Progres area ini tidak disimpan.')) leave() }
+}
+const track = r => `<div class="track" aria-hidden="true">${Array.from({ length: r.L.need }, (_, i) => `${i ? `<span class="ln${i <= r.correct ? ' on' : ''}"></span>` : ''}<span class="nd${i < r.correct ? ' on' : i === r.correct ? ' cur' : ''}">${i < r.correct ? '✓' : i + 1}</span>`).join('')}</div>`
+function leave() { if (R) { R.over = true; R.cancel && R.cancel(); R = null } go('sMap') }
+function frame(r, inner, mood = 'think') { $('#stage').innerHTML = `${scene(r.L.n, r.correct, r.L.need, mood)}${track(r)}${inner}` }
+function startArea(n) {
+  if (R) { R.over = true; R.cancel && R.cancel() }
+  const L = AREAS[n], run = R = { L, n, lives: L.lives, score: 0, crystals: 0, mistakes: 0, correct: 0, left: L.time, over: false, cancel: null, onWrong: () => { run.lives--; run.mistakes++; hud() } }
+  $('#sPlay').innerHTML = '<div class="hud glass" id="hud"></div><div class="stage" id="stage"></div>'; showOnly('sPlay'); hud()
+  frame(run, `<div class="brief">${say('smile', `<b>Area ${n}: ${L.t}</b><br>${L.say}`, 'padding:0 0 10px')}<div class="goals"><div><b>${L.need}</b><span>tantangan</span></div><div><b>${L.lives}</b><span>nyawa</span></div><div><b>${L.time ? fmt(L.time) : '∞'}</b><span>waktu</span></div></div><p class="sm">${L.obj}</p><p class="sm" style="margin-top:6px">Mekanisme: ${L.mech}</p><div style="display:flex;justify-content:center;padding:14px 0 6px"><button class="btn big" id="bGo" type="button">Mulai membangun</button></div></div>`, 'smile')
+  $('#bGo').onclick = () => playArea(run)
+}
+async function playArea(run) {
+  const L = run.L
+  if (L.time) { const iv = setInterval(() => { if (stale(run)) return clearInterval(iv); run.left--; hud(); if (run.left <= 0) { clearInterval(iv); run.over = true; run.cancel && run.cancel(); lose(run, 'Waktu habis!') } }, 1000) }
+  while (run.correct < L.need && !stale(run)) {
+    frame(run, `${say('think', `Tantangan ${run.correct + 1} dari ${L.need}.`)}${qcard}`)
+    const q = L.gens[run.correct](); await ask(q, run).then(res => {
+      if (stale(run)) return
+      if (res.ok) { run.correct++; run.score += res.tries === 1 ? L.pts : L.pts / 2; if (res.tries === 1) run.crystals++ }
+      hud(); if (res.dead) { run.over = true; lose(run, 'Nyawa habis!') }
+    })
+    if (stale(run)) return
+  }
+  if (!stale(run)) win(run)
+}
+function lose(run, why) {
+  if (run !== R) return; run.over = true; save()
+  $('#sRes').innerHTML = `<div class="res glass"><div class="rch">${guideSVG('sad')}</div><h2>${why}</h2><p class="sm">Pembangunan area ${run.n} belum selesai. Coba lagi; soalnya akan berbeda.</p><div class="acts"><button class="btn" id="rAgain" type="button">Ulangi area</button><button class="btn ghost" id="rMap" type="button">Kembali ke peta</button></div></div>`
+  showOnly('sRes'); $('#rAgain').onclick = () => startArea(run.n); $('#rMap').onclick = leave
+}
+function win(run) {
+  run.over = true; const L = run.L, n = run.n
+  const bl = run.lives * 50, bt = L.time ? Math.round(run.left * 2) : 0, base = run.score
+  run.crystals += 3; run.score = base + bl + bt
+  const st = run.mistakes === 0 ? 3 : run.mistakes <= 2 ? 2 : 1, rec = { score: run.score, crystals: run.crystals, stars: st, mistakes: run.mistakes }, prev = S.best[n]
+  if (!prev || rec.score > prev.score) S.best[n] = { ...rec, stars: Math.max(st, prev ? prev.stars : 0) }
+  S.unlocked = Math.max(S.unlocked, Math.min(n + 1, 5)); save(); sfx.win()
+  ping({ type: 'level', level: n, score: rec.score, crystals: rec.crystals, stars: st, mistakes: rec.mistakes })
+  $('#sRes').innerHTML = `<div class="res glass"><div class="rch">${guideSVG('cheer')}</div><span class="tag">Area ${n} selesai</span><h2>${L.t}</h2><svg viewBox="-135 -130 270 280" style="width:min(240px,70%);display:block;margin:0 auto" aria-hidden="true">${zoneArt(n, 2)}</svg><div class="stars" aria-label="${st} dari 3 bintang">${'★'.repeat(st)}<span class="o">${'★'.repeat(3 - st)}</span></div>
+  <div class="rows"><div><span>Skor soal</span><span>${base}</span></div><div><span>Bonus nyawa</span><span>+${bl}</span></div>${L.time ? `<div><span>Bonus waktu</span><span>+${bt}</span></div>` : ''}<div><span>Koin</span><span>${run.crystals}</span></div><div class="t"><span>Total skor</span><span>${run.score}</span></div></div>
+  <div class="acts">${n < 5 ? `<button class="btn" id="rNext" type="button">Area berikutnya</button>` : `<button class="btn" id="rFin" type="button">Lihat kotamu</button>`}<button class="btn ghost" id="rAgain" type="button">Main lagi</button><button class="btn ghost" id="rMap" type="button">City Map</button></div></div>`
+  showOnly('sRes'); R = null
+  if ($('#rNext')) $('#rNext').onclick = () => startArea(n + 1); if ($('#rFin')) $('#rFin').onclick = final
+  $('#rAgain').onclick = () => startArea(n); $('#rMap').onclick = () => go('sMap')
+}
+function final() {
+  const T = totals(), rank = T.score >= 4000 ? 'Walikota Line City' : T.score >= 3000 ? 'Perancang Kota Handal' : 'Arsitek Kota'
+  $('#sRes').innerHTML = `<div class="res glass"><div class="rch">${guideSVG('cheer')}</div><span class="tag">Line City selesai</span><h2>${rank}</h2><p class="sm">Seluruh kota berdiri berkat Persamaan Garis Lurus.</p><div class="mapbox" style="margin:12px 0">${cityMap()}</div><div class="stars">${'★'.repeat(Math.round(T.st / 5))}<span class="o">${'★'.repeat(3 - Math.round(T.st / 5))}</span></div><div class="rows"><div><span>Total skor</span><span>${T.score}</span></div><div><span>Bintang</span><span>${T.st}/15</span></div></div><div class="acts"><button class="btn" id="rMap" type="button">Kembali ke peta</button><button class="btn ghost" id="rAch" type="button">Lihat penghargaan</button></div></div>`
+  showOnly('sRes'); $('#rMap').onclick = () => go('sMap'); $('#rAch').onclick = () => go('sAch')
+}
+
+/* ---------- halaman ---------- */
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+const PAGES = [['sLand', 'Beranda'], ['sDash', 'Dashboard'], ['sMap', 'City Map'], ['sMini', 'Mini Games'], ['sAch', 'Achievement'], ['sProg', 'My Progress']]
+const ALL = ['sLand', 'sProf', 'sDash', 'sMap', 'sPlay', 'sMini', 'sAch', 'sProg', 'sRes']
+$('#nav').innerHTML = PAGES.map(([id, t]) => `<button type="button" data-go="${id}">${t}</button>`).join('')
+function showOnly(id) { clearInterval(window._mt); ALL.forEach(x => $('#' + x).hidden = x !== id); $$('#nav button').forEach(b => b.classList.toggle('on', b.dataset.go === id)); scrollTo(0, 0) }
+const RENDER = {}
+function go(id) { if (!S.name && id !== 'sLand' && id !== 'sProf') id = 'sProf'; if (R && id !== 'sPlay') { R.over = true; R.cancel && R.cancel(); R = null } RENDER[id] && RENDER[id](); showOnly(id) }
+$('#nav').onclick = e => { const b = e.target.closest('[data-go]'); if (b) go(b.dataset.go) }
+$('#bHome').onclick = () => go('sLand')
+const stars = k => '★'.repeat(k) + '☆'.repeat(3 - k)
+
+RENDER.sLand = () => {
+  $('#sLand').innerHTML = `<div class="land"><div><span class="tag">City Builder · Simulasi · Puzzle</span><h1>LINE <span>CITY</span></h1><div class="sub">Build Your Math World!</div>
+  <p>Jadilah City Designer! Selesaikan tantangan Persamaan Garis Lurus bersama Lina untuk membangun taman, bukit, menara, akademi, dan gedung pencakar langit di kotamu.</p>
+  <button class="btn big" id="bStart" type="button">${S.name ? 'Lanjutkan membangun' : 'Mulai membangun'}</button>
+  <details class="how"><summary>Cara bermain</summary><ul><li>Buka City Map dan pilih area yang tersedia. Area baru terbuka setelah area sebelumnya selesai.</li><li>Tiap area punya tantangan dan cara main yang berbeda: seret titik, atur slider, cocokkan, susun persamaan, dan gambar grafik.</li><li>Jawaban salah mengurangi nyawa dan memberi petunjuk. Ada satu kesempatan ulang.</li><li>Kumpulkan XP, koin, bintang, dan lencana.</li></ul></details></div>
+  <div class="hero" style="aspect-ratio:1000/640">${cityMap(1)}<div class="ch">${guideSVG('cheer')}</div></div></div>`
+  $('#bStart').onclick = () => go(S.name ? 'sDash' : 'sProf')
+}
+RENDER.sProf = () => {
+  let av = S.av
+  $('#sProf').innerHTML = `<div class="prof glass"><span class="tag">Player Profile</span><h2>Siapa nama City Designer?</h2><p class="sm">Pilih avatar dan tulis namamu. Data ini hanya tersimpan di perangkat ini.</p><label class="field" for="pName">Nama pemain</label><input class="inp" id="pName" maxlength="14" autocomplete="off" value="${esc(S.name)}" placeholder="contoh: Raka"><span class="field" style="display:block">Pilih avatar</span><div class="avs" id="avs">${[0, 1, 2, 3, 4, 5].map(i => `<button type="button" data-a="${i}" class="${i === av ? 'on' : ''}" aria-label="Avatar ${i + 1}"><span class="av">${avatarSVG(i)}</span></button>`).join('')}</div><button class="btn big" id="pOk" type="button">Masuk ke kota</button></div>`
+  $('#avs').onclick = e => { const b = e.target.closest('[data-a]'); if (!b) return; av = +b.dataset.a; $$('#avs button').forEach(x => x.classList.toggle('on', x === b)) }
+  $('#pOk').onclick = () => { const n = $('#pName').value.trim(); if (!n) { $('#pName').focus(); $('#pName').style.boxShadow = 'inset 0 0 0 3px #ff4d6d'; return } S.name = n; S.av = av; save(); go('sDash') }
+}
+RENDER.sDash = () => {
+  const T = totals(), xp = xpOf(), lv = lvlOf(), into = xp % LV_XP, cur = [1, 2, 3, 4, 5].find(n => !S.best[n]) || 0
+  $('#sDash').innerHTML = `<div class="pg"><div class="dh glass"><div class="av">${avatarSVG(S.av)}</div><div style="flex:1;min-width:180px"><h2>Halo, ${esc(S.name)}!</h2><div class="sm">${rankOf()} · Level ${lv}</div></div><button class="btn mt sm" id="dEdit" type="button">Ubah profil</button></div>
+  <div class="stats"><div class="stat glass"><div class="ic">${ic('xp')}</div><span class="sm">XP</span><b>${xp}</b><div class="bar pu" style="margin-top:6px"><i style="width:${into / LV_XP * 100}%"></i></div><span class="sm">${LV_XP - into} XP lagi ke level ${lv + 1}</span></div>
+  <div class="stat glass"><div class="ic">${ic('coin')}</div><span class="sm">Koin</span><b>${coinsOf()}</b></div><div class="stat glass"><div class="ic">${ic('star')}</div><span class="sm">Bintang</span><b>${T.st}/15</b></div><div class="stat glass"><div class="ic">${ic('map')}</div><span class="sm">Area selesai</span><b>${T.done}/5</b></div></div>
+  <div class="glass pad"><b style="font:600 18px var(--head)">Progres kota</b><div class="bar" style="margin:8px 0"><i style="width:${T.done * 20}%"></i></div><div class="sm">${T.done === 5 ? 'Kota selesai dibangun! Ulangi area untuk menambah bintang.' : `Berikutnya: Area ${cur} — ${NAMA[cur]}`}</div><div style="margin-top:10px"><button class="btn" id="dNext" type="button">${T.done === 5 ? 'Lihat City Map' : T.done === 0 ? 'Mulai Area 1' : 'Lanjut ke Area ' + cur}</button></div></div>
+  <div class="tiles"><button class="tile2" data-go="sMap" type="button"><span class="ic">${ic('map')}</span><b>City Map</b><span>Pusat permainan</span></button><button class="tile2" data-go="sMini" type="button"><span class="ic">${ic('game')}</span><b>Mini Games</b><span>Cari koin tambahan</span></button><button class="tile2" data-go="sAch" type="button"><span class="ic">${ic('trophy')}</span><b>Achievement</b><span>Koleksi penghargaan</span></button></div></div>`
+  $('#dEdit').onclick = () => go('sProf'); $('#dNext').onclick = () => T.done === 5 ? go('sMap') : startArea(cur)
+  $$('#sDash .tile2').forEach(b => b.onclick = () => go(b.dataset.go))
+}
+RENDER.sMap = () => {
+  const T = totals(), cur = [1, 2, 3, 4, 5].find(n => !S.best[n]) || 0
+  $('#sMap').innerHTML = `<div class="pg"><h2>City Map</h2><p class="sm">Ketuk area untuk mulai membangun. Area yang masih berpagar konstruksi terbuka setelah area sebelumnya selesai.</p><div class="chips" style="margin-bottom:12px"><span class="chip">XP ${xpOf()}</span><span class="chip">Koin ${coinsOf()}</span><span class="chip">Bintang ${T.st}/15</span><span class="chip">Level ${lvlOf()}</span></div><div class="mapbox">${cityMap()}</div><p class="sm" id="mnote" aria-live="polite" style="margin-top:8px"></p>
+  <div class="alist">${[1, 2, 3, 4, 5].map(n => { const lock = n > S.unlocked, b = S.best[n]; return `<button class="ac${lock ? ' lock' : ''}${n === cur ? ' cur' : ''}" data-n="${n}" type="button"><div class="n">AREA ${n}${lock ? ' · TERKUNCI' : ''}</div><h3>${NAMA[n]}</h3><div class="s">${AREAS[n].d}</div><div class="s" style="margin-top:4px;color:#b27a00">${b ? stars(b.stars) + ' · ' + b.score : lock ? 'Selesaikan area sebelumnya' : 'Belum dibangun'}</div></button>` }).join('')}</div></div>`
+  const open = n => { if (n > S.unlocked) { $('#mnote').textContent = `Area ${n} masih terkunci. Selesaikan Area ${n - 1} lebih dulu.`; sfx.no(); return } startArea(n) }
+  $$('#sMap .ac').forEach(b => b.onclick = () => open(+b.dataset.n))
+  $$('#sMap .zone').forEach(z => { z.onclick = () => open(+z.dataset.n); z.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(+z.dataset.n) } } })
+}
+RENDER.sAch = () => {
+  const T = totals(), got = BADGES.map(b => ({ ...b, on: b.ok(S, T) }))
+  $('#sAch').innerHTML = `<div class="pg"><h2>Achievement</h2><p class="sm">${got.filter(b => b.on).length} dari ${got.length} penghargaan terkumpul.</p><div class="badges">${got.map(b => `<div class="bdg${b.on ? '' : ' off'}"><div class="ic">${b.i}</div><b>${b.n}</b><span>${b.d}</span></div>`).join('')}</div></div>`
+}
+RENDER.sProg = () => {
+  const T = totals(), tot = S.tot.ok + S.tot.no, acc = tot ? Math.round(S.tot.ok / tot * 100) : 0
+  const worst = [1, 2, 3, 4, 5].filter(n => S.best[n]).sort((a, b) => S.best[b].mistakes - S.best[a].mistakes)[0]
+  $('#sProg').innerHTML = `<div class="pg"><h2>My Progress</h2><p class="sm">Hasil dan perkembangan belajarmu.</p><div class="stats"><div class="stat glass"><span class="sm">Jawaban benar</span><b>${S.tot.ok}</b></div><div class="stat glass"><span class="sm">Jawaban salah</span><b>${S.tot.no}</b></div><div class="stat glass"><span class="sm">Ketepatan</span><b>${acc}%</b></div><div class="stat glass"><span class="sm">Total skor</span><b>${T.score}</b></div></div>
+  <div class="glass pad">${[1, 2, 3, 4, 5].map(n => { const b = S.best[n]; return `<div class="prow"><b>${n}. ${NAMA[n]}</b><div class="bar"><i style="width:${b ? 100 : n <= S.unlocked ? 8 : 0}%"></i></div><span class="sm">${b ? stars(b.stars) + ' · ' + b.score : n <= S.unlocked ? 'Belum selesai' : 'Terkunci'}</span></div>` }).join('')}</div>
+  <div class="glass pad" style="margin-top:14px"><b style="font:600 18px var(--head)">Rekomendasi belajar</b><p style="margin:6px 0;line-height:1.5">${!T.done ? 'Mulai dengan membangun Coordinate Park di City Map.' : worst && S.best[worst].mistakes > 0 ? `Area yang paling banyak salah: <b>${NAMA[worst]}</b> (${S.best[worst].mistakes} salah). Ulangi area itu untuk menambah bintang.` : 'Kamu bermain tanpa banyak salah. Coba ulangi area untuk mendapat 3 bintang dan skor lebih tinggi.'}</p><div class="acts" style="justify-content:flex-start"><button class="btn bl sm" data-go="sMap" type="button">Buka City Map</button><button class="btn ghost sm" id="pgReset" type="button">Hapus semua progres</button></div></div></div>`
+  $('#sProg').querySelector('[data-go]').onclick = () => go('sMap')
+  $('#pgReset').onclick = () => { if (confirm('Hapus semua progres game LINE CITY di perangkat ini? (Hasil yang sudah tersimpan di akun tidak dihapus.)')) { S = S0(); save(); go('sLand') } }
+}
+
+/* ---------- Mini Games ---------- */
+function endMini(key, name, sc) {
+  clearInterval(window._mt); const best = Math.max(S.mini[key] || 0, sc); S.mini[key] = best; S.coins2 += sc; S.mxp += sc * 3; save(); sfx.win()
+  $('#sMini').innerHTML = `<div class="pg"><div class="res glass"><div class="rch">${guideSVG(sc >= 8 ? 'cheer' : 'smile')}</div><h2>${name}</h2><div class="stars" style="font-size:54px;letter-spacing:0">${sc}</div><p class="sm">Skor kamu. Rekor: ${best}</p><div class="rows"><div><span>Koin didapat</span><span>+${sc}</span></div><div><span>XP didapat</span><span>+${sc * 3}</span></div></div><div class="acts"><button class="btn" id="mAgain" type="button">Main lagi</button><button class="btn ghost" id="mBack" type="button">Daftar mini game</button></div></div></div>`
+  $('#mAgain').onclick = () => key === 'm1' ? mini1() : mini2(); $('#mBack').onclick = () => go('sMini')
+}
+function mini1() {
+  let sc = 0, t = 30, tg; const rt = () => { tg = { x: rnd(-5, 5), y: rnd(-5, 5) }; $('#mTg').textContent = `Ketuk titik ${pairS(tg.x, tg.y)}` }
+  $('#sMini').innerHTML = `<div class="pg"><div class="mini-top glass pad"><b>Koordinat Kilat</b><span class="chip" id="mS">Skor 0</span><span class="chip" id="mT">30 dtk</span></div><div class="glass pad"><div class="rd" id="mTg" aria-live="polite"></div>${plane({ r: 5, s: 26, act: true })}</div></div>`
+  const svg = $('#sMini .pl'); rt()
+  svg.addEventListener('pointerdown', e => { const p = gridPt(svg, e); if (p.x === tg.x && p.y === tg.y) { sc++; sfx.ok(); $('#mS').textContent = 'Skor ' + sc; rt() } else { sfx.no(); t = Math.max(0, t - 1) } mk(svg, p, p.x === tg.x && p.y === tg.y ? '#22c58b' : '#ff4d6d') })
+  window._mt = setInterval(() => { t--; $('#mT').textContent = Math.max(t, 0) + ' dtk'; if (t <= 0) endMini('m1', 'Koordinat Kilat', sc) }, 1000)
+}
+function mini2() {
+  let sc = 0, t = 30, cor
+  const POOL = [[-3, 1], [-2, 1], [-1, 1], [-1, 2], [1, 2], [1, 1], [2, 1], [3, 1]], rt = () => { const ch = shuffle(POOL).slice(0, 4); cor = pick(ch); const c = pick([-1, 0, 1, 2]); $('#mQ').innerHTML = plane({ r: 4, s: 30, lines: [{ m: cor[0] / cor[1], c }], label: 'Garis' }).replace('class="pl', 'style="max-width:220px" class="pl'); $('#mO').innerHTML = ch.map(([n, d]) => `<button class="opt" data-n="${n}" data-d="${d}" type="button">${fr(n, d)}</button>`).join(''); $$('#mO .opt').forEach(b => b.onclick = () => { if (+b.dataset.n === cor[0] && +b.dataset.d === cor[1]) { sc++; sfx.ok(); $('#mS').textContent = 'Skor ' + sc } else { sfx.no(); t = Math.max(0, t - 1) } rt() }) }
+  $('#sMini').innerHTML = `<div class="pg"><div class="mini-top glass pad"><b>Tebak Gradien</b><span class="chip" id="mS">Skor 0</span><span class="chip" id="mT">30 dtk</span></div><div class="glass pad"><div class="rd">Berapa gradien garis ini?</div><div id="mQ"></div><div class="opts two" id="mO" style="margin-top:10px"></div></div></div>`
+  rt(); window._mt = setInterval(() => { t--; $('#mT').textContent = Math.max(t, 0) + ' dtk'; if (t <= 0) endMini('m2', 'Tebak Gradien', sc) }, 1000)
+}
+RENDER.sMini = () => {
+  $('#sMini').innerHTML = `<div class="pg"><h2>Mini Games</h2><p class="sm">Permainan singkat 30 detik untuk mengumpulkan koin dan XP tambahan.</p><div class="mgrid"><div class="mg glass"><div class="av" style="border-radius:16px;width:56px;height:56px">${`<svg viewBox="0 0 64 64">${ico.map}</svg>`}</div><h3>Koordinat Kilat</h3><p class="sm" style="margin:4px 0 10px">Ketuk titik koordinat yang diminta secepat mungkin. Rekor: ${S.mini.m1 || 0}</p><button class="btn mt" id="m1" type="button">Main</button></div><div class="mg glass"><div class="av" style="border-radius:16px;width:56px;height:56px">${`<svg viewBox="0 0 64 64">${ico.line}</svg>`.replace('stroke="#fff"', 'stroke="#8b5cf6"')}</div><h3>Tebak Gradien</h3><p class="sm" style="margin:4px 0 10px">Lihat garis, pilih gradiennya sebanyak mungkin. Rekor: ${S.mini.m2 || 0}</p><button class="btn mt" id="m2" type="button">Main</button></div></div></div>`
+  $('#m1').onclick = mini1; $('#m2').onclick = mini2
+}
+
+/* ---------- init ---------- */
+$('#sky').innerHTML = `<svg viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice"><circle cx="880" cy="110" r="60" fill="#fff3a6" opacity=".9"/><circle cx="880" cy="110" r="44" fill="url(#gYel)"/>${[[80, 90, 1], [560, 70, .8], [300, 540, 1.1], [760, 500, .9]].map(([x, y, s]) => `<g transform="translate(${x} ${y}) scale(${s})" opacity=".9"><ellipse cx="0" cy="12" rx="64" ry="20" fill="#fff"/><circle cx="-18" cy="0" r="22" fill="#fff"/><circle cx="14" cy="-8" r="28" fill="#fff"/></g>`).join('')}</svg>`
+$('#bSound').onclick = e => { sound = !sound; e.target.textContent = 'Suara: ' + (sound ? 'nyala' : 'mati'); e.target.setAttribute('aria-pressed', sound) }
+addEventListener('message', e => { const d = e.data; if (e.source !== parent || !d || d.mq !== 'linecity' || d.type !== 'restore' || !Array.isArray(d.best)) return
+  d.best.forEach(b => { const n = +b.level; if (n < 1 || n > 5) return; const p = S.best[n], r = { score: +(b.skor ?? b.score) || 0, crystals: +(b.kristal ?? b.crystals) || 0, stars: Math.min(3, +(b.bintang ?? b.stars) || 1), mistakes: +(b.salah ?? b.mistakes) || 0 }; if (!p || r.score > p.score) S.best[n] = r; S.unlocked = Math.max(S.unlocked, Math.min(n + 1, 5)) })
+  save(); const vis = ALL.find(x => !$('#' + x).hidden); if (vis && RENDER[vis]) RENDER[vis]() })
+go('sLand')
+ping({ type: 'ready' })
+})()
+</script>
+
+</html>
